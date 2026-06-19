@@ -44,7 +44,7 @@
 - `ml-paper-writing` — 本地版标注 Orchestra Research MIT（需确认是否为原版）
 - `cn-academic-writing` — 来源待确认
 - `scau-thesis-template` — 来源待确认
-- `reference-management` — 来源待确认
+- ~~`reference-management`~~ — 已移除（空壳技能，3个脚本死引用，功能由 academic-citation-manager 完全覆盖）
 - `academic-paper-literature-analyzer` — 来源待确认
 - `docx-table-merge` — 来源待确认
 
@@ -105,12 +105,10 @@
 - 来源：OpenDataLab | 许可证：AGPL-3.0 | https://github.com/opendatalab/MinerU
 - API v4，支持公式/表格/OCR
 
-🔶 `academic-citation-manager` — 6种引用格式管理
+🔶 `academic-citation-manager` — **唯一引用管理工具**，6种引用格式
 - 来源：YouStudyeveryday via SkillHub | 许可证：MIT
 - https://github.com/YouStudyeveryday/academic-citation-manager
-
-🔶 `reference-management` — GB/T 7714格式格式化
-- 来源：SkillHub 社区（作者待确认）
+- 覆盖 GB/T 7714/APA/MLA/Chicago/Vancouver/Harvard
 
 ## 四、论文评审与修改
 
@@ -207,7 +205,7 @@
 | 搜英文论文 | `mcp_sciverse` 🔵 | `arxiv` 📦 | sciverse 是 Hermes 内置 MCP |
 | 搜中文论文 | `cnki` 🔄 | - | 本地 Playwright 独立实现 |
 | 读论文全文 | `mineru` 🌐 | `mcp_sciverse read_content` 🔵 | AGPL-3.0 |
-| 引用管理 | `academic-citation-manager` 🔶 | `reference-management` 🔶 | YouStudyeveryday MIT |
+| 引用管理 | `academic-citation-manager` 🔶 | - | YouStudyeveryday MIT，唯一引用管理工具 |
 | 论文配图 | `academic-figures` 🔶 | - | docsor1212 |
 | 润色/去AI味 | `avoid-ai-writing` 🔄 (rewrite, academic) | `paper-revision-sop` 🔶 | |
 | 毕业论文排版（scau） | `scau-thesis-template` 🔶 | - | |
@@ -265,7 +263,7 @@ POST https://mineru.net/api/v4/extract/task
 3. **Closed Access论文**：sciverse read_content 返回404。解法：通过cnki下载PDF→用mineru解析
 4. **citation-grounded-writing v1.1.0**：新建技能，尚未经过真人实战测试
 5. **SkillHub发布**：需用户完成实名认证后才可发布
-6. **待确认作者**：`cn-academic-writing`、`scau-thesis-template`、`reference-management`、`academic-paper-literature-analyzer`、`docx-table-merge` 的来源和作者尚待确认
+6. **待确认作者**：`cn-academic-writing`、`scau-thesis-template`、`academic-paper-literature-analyzer`、`docx-table-merge` 的来源和作者尚待确认
 7. `paper-revision-sop` 已从本仓库自创（MIT）更正为 ClawHub 社区技能（liuwenqi123123）
 
 ---
@@ -282,3 +280,4 @@ POST https://mineru.net/api/v4/extract/task
   - `cnki`、`avoid-ai-writing`、`deep-research` 标记为🔄同名不同实现
   - 路由决策表每行增加来源图标前缀
   - 新增「同名不同实现」分类说明
+- 2026-06-19: 移除 `reference-management`（空壳技能，功能由 academic-citation-manager 完全覆盖）

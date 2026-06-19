@@ -215,7 +215,7 @@ academic-writing-automation/
 | 去AI味 | `avoid-ai-writing` | 本地修改版（原版：conorbrondon） | 见原作者 |
 | 论文润色 | `paper-revision-sop` | [liuwenqi123123](https://clawhub.ai/liuwenqi123123/paper-revision-sop) (ClawHub) | 见原作者 |
 | 图表生成 | `academic-figures` | [docsor1212](https://clawhub.com/skills/academic-figures) via SkillHub | 见原作者 |
-| 引用管理 | `academic-citation-manager`, `reference-management` | [YouStudyeveryday](https://github.com/YouStudyeveryday/academic-citation-manager) / SkillHub | MIT / 见原作者 |
+| 引用管理 | `academic-citation-manager` | [YouStudyeveryday](https://github.com/YouStudyeveryday/academic-citation-manager) | MIT |
 | 模拟评审 | `ars-academic-paper-reviewer` | [ARS](https://github.com/Imbad0202/academic-research-skills) (Cheng-I Wu) | CC-BY-NC-4.0 |
 | 深度研究 | `ars-deep-research`, `deep-research` | [ARS](https://github.com/Imbad0202/academic-research-skills) / SkillHub | CC-BY-NC-4.0 / 见原作者 |
 

@@ -22,7 +22,7 @@
 
 2. **MINERU_TOKEN 已配置**：417字符 JWT，写入 `~/.hermes/.env`，API 验证通过。获取方式：用户提供。写入方式：Python（heredoc/echo 会因特殊字符出错）。
 
-3. **reference-management 实际路径**：`~/.hermes/skills/academic/reference-management/`（不在根目录）
+3. `academic-citation-manager` 在 `~/.hermes/skills/academic-citation-manager/`（独立目录，完整技能，是唯一实际使用的引用管理工具）
 
 4. **multi-academic-search 实际路径**：`~/.hermes/skills/文献检索skill/multi-academic-search/`（中文目录名）
 

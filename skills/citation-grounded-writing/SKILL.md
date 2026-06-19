@@ -1,7 +1,7 @@
 ---
 name: citation-grounded-writing
 version: 1.1.0
-description: "全自动化论文写作——自动搜索、下载、解析、阅读参考文献全文，提取真实句子嵌入正文写作。集成：cnki / MCP sciverse / mineru / academic-citation-manager / reference-management / avoid-ai-writing。强制规则：每条引用必须有原文佐证，禁止虚构引用。"
+description: "全自动化论文写作——自动搜索、下载、解析、阅读参考文献全文，提取真实句子嵌入正文写作。集成：cnki / MCP sciverse / mineru / academic-citation-manager / avoid-ai-writing。强制规则：每条引用必须有原文佐证，禁止虚构引用。"
 tags: [academic, writing, citation, grounded, evidence-based, full-automation]
 author: "Hermes Agent"
 ---
@@ -226,8 +226,7 @@ author: "Hermes Agent"
 | MCP `mcp_sciverse_semantic_search` | Phase 1 | 语义搜索（补足概念性匹配） |
 | MCP `mcp_sciverse_read_content` | Phase 1 | 字节级读取论文全文 |
 | `mineru` | Phase 1 | PDF/Word/PPT → Markdown（公式+表格+OCR） |
-| `reference-management` | Phase 4/5 | 引用格式验证 + DOCX 插入脚本 |
-| `academic-citation-manager` | Phase 5 | 引用元数据管理 + 6格式生成 |
+| `academic-citation-manager` | Phase 4/5 | 引用格式验证 + 6格式生成 + DOCX插入 |
 | `avoid-ai-writing` | Phase 6 | 去AI味润色 |
 
 ---
