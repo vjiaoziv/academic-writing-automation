@@ -197,6 +197,8 @@
 | 研究一个主题 | `ars-deep-research` 🔸 | `deep-research` 🔄 | ARS 13-agent vs 本地独立版 |
 | 不确定研究方向 | `brainstorming` + `deep-research` 🔄 | `ars-hub` 🔸 | |
 | **写一篇论文** | `citation-grounded-writing` 📦 | `ars-academic-paper` 🔸 | **首选基于真实文献的自创 MIT 技能** |
+| 验证论文每句话有文献来源 | `citation-grounding` 📦 | - | 自创 MIT，逐句→检索→验证→Evidence Pack |
+| 系统综述PRISMA初筛 | `citation-grounded-writing` 📦 (Phase 1.5) | `ars-deep-research` 🔸 | 标题→摘要→全文三阶段筛选 |
 | 写中文思政论文 | `citation-grounded-writing` 📦 | `cn-academic-writing` 🔶 | |
 | 评审论文（同行评审） | `ars-academic-paper-reviewer` 🔸 | - | CC-BY-NC-4.0 ⚠️非商业 |
 | 审核论文（检查质量） | `paper-revision-sop` 🔶 | `ars-academic-paper-reviewer` 🔸 | 来自 ClawHub liuwenqi123123 |

@@ -1,6 +1,6 @@
 # 📚 学术论文写作自动化工具包
 
-> **从文献搜索 → 全文阅读 → 句子提取 → 自动写作 → 引用检查 → 去AI味润色 → Word批注审稿的完整管线**
+> **从文献搜索 → PRISMA初筛 → 全文阅读 → 句子提取 → 自动写作 → 引用检查+Citation Grounding → 去AI味润色 → Word批注审稿的完整管线**
 
 > ⚠️ **许可证注意：** 本仓库集成了 ARS (Academic Research Skills) 套件，其许可证为 **CC-BY-NC-4.0（非商业使用）**。如果您的使用场景涉及商业活动（如付费服务、企业内部使用），请在路由决策表中优先选择标注「📦 自创 MIT」的技能，或获取 ARS 原作者的商业授权后再使用 ARS 套件。
 
@@ -223,7 +223,9 @@ academic-writing-automation/
 
 ## 📜 许可证与版权声明
 
-**本仓库自创技能**（`citation-grounded-writing`、`add-docx-comments`、`arxiv`、`marxist-report-word`、`docx-punctuation-normalizer`）采用 **MIT License** — 自由使用、修改和分发。
+**本仓库自创技能**（`citation-grounded-writing`、`citation-grounding`、`add-docx-comments`、`arxiv`、`marxist-report-word`、`docx-punctuation-normalizer`）采用 **MIT License** — 自由使用、修改和分发。
+
+> ⚠️ **关于 `citation-grounding`**：基于 [Sciverse Agent Tools Cookbook](https://github.com/opendatalab/Sciverse-Agent-Tools) 中 `citation-grounding.ipynb` 和 `evidence-pack.ipynb` (OpenDataLab, Apache-2.0) 设计，本地独立实现为 Hermes 技能。
 
 > ⚠️ **关于 `arxiv`**：本仓库的 `arxiv` 技能是基于 curl REST API 的独立实现，与 SkillHub 上 ractorrr 的 arXiv Research Assistant（含 MongoDB 功能）不是同一个代码，不归属于 ractorrr。
 

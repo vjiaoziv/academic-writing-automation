@@ -1,7 +1,7 @@
 ---
 name: citation-grounded-writing
-version: 1.1.3
-description: "全自动化论文写作——自动搜索、下载、解析、阅读参考文献全文，提取真实句子嵌入正文写作。集成：MCP sciverse（首选，中英文4.65亿记录+原文段落）/ cnki（备用，知网下载PDF）/ mineru（备用，PDF解析）/ academic-citation-manager / avoid-ai-writing。强制规则：每条引用必须有原文佐证，禁止虚构引用。"
+version: 1.2.0
+description: "全自动化论文写作——自动搜索、PRISMA初筛、下载、解析、阅读参考文献全文，提取真实句子嵌入正文写作。集成：MCP sciverse（首选，中英文4.65亿记录+原文段落）/ cnki（备用，知网下载PDF）/ mineru（备用，PDF解析）/ academic-citation-manager / citation-grounding / avoid-ai-writing。强制规则：每条引用必须有原文佐证，禁止虚构引用。"
 tags: [academic, writing, citation, grounded, evidence-based, full-automation]
 author: "Hermes Agent"
 ---
@@ -15,18 +15,18 @@ author: "Hermes Agent"
 ```
 用户提供论文主题
     ↓
-自动搜索 → 自动下载PDF → 解析全文 → 提取关键句
-    ↓                       ↑
-按大纲逐节写作 ──────────────┘（匹配同主题句子嵌入正文）
+自动搜索 → PRISMA初筛（标题→摘要→全文三阶段） → 下载PDF → 解析全文 → 提取关键句
+    ↓                                                     ↑
+按大纲逐节写作 ───────────────────────────────────────────┘（匹配同主题句子嵌入正文）
     ↓
-引用合规检查（验证每条引用真实存在）
+引用合规检查 + Citation Grounding（逐句验证每条引用原文存在性）
     ↓
 去AI味润色 → 输出完稿
 ```
 
 ---
 
-## 完整工作流（6 阶段）
+## 完整工作流（7 阶段）
 
 ### Phase 0：配置阶段
 
@@ -78,6 +78,63 @@ author: "Hermes Agent"
 **所有解析结果统一保存为 Markdown**，便于后续句子提取。
 
 **输出**：`refs/` 目录，每篇文献一个 .md 文件
+
+---
+
+### Phase 1.5：PRISMA 初筛（系统综述标准三阶段筛选）
+
+> 来源：Sciverse Agent Tools Cookbook `systematic-review-screener.ipynb` (OpenDataLab, Apache-2.0)
+
+当搜索结果数量庞大（>50 篇候选）时，使用 PRISMA 风格三阶段初筛确保纳入质量：
+
+#### 阶段一：标题筛选（Title Screening）
+
+从搜索结果中，按以下标准初筛：
+
+| 纳入标准 | 排除标准 |
+|----------|----------|
+| 标题与研究主题直接相关 | 标题无关或仅提及相关概念 |
+| 近3年发表 | 过于陈旧 |
+| 来自可信出版源 | 来源不明/掠夺性期刊 |
+
+**输出**：通过标题筛选的候选列表（预计保留 60-80%）
+
+#### 阶段二：摘要筛选（Abstract Screening）
+
+对通过标题筛选的论文，进一步按摘要判断：
+
+| 纳入标准 | 排除标准 |
+|----------|----------|
+| 方法论明确（实验/调查/综述/理论） | 仅报道/新闻/社论 |
+| 研究问题与本论文匹配 | 方法不适用 |
+| 有可提取的结论/数据 | 仅含摘要预览 |
+
+**输出**：通过摘要筛选的候选列表（预计保留 40-60%）
+
+#### 阶段三：全文预览（Full-text Preview）
+
+对通过摘要筛选的论文，快速浏览全文（`read_content` 前2KB）：
+
+| 纳入标准 | 排除标准 |
+|----------|----------|
+| 数据/方法/结论可提取 | 全文不可读（Closed Access + 404） |
+| 包含可引用的具体句子 | 仅有摘要/无实质内容 |
+
+**输出**：最终纳入列表（预计 15-25 篇），进入 Phase 2
+
+#### PRISMA 流程图（自动生成）
+
+```
+Sciverse 搜索结果 (N 篇)
+    ↓ 标题筛选
+通过标题 (M 篇, M ≤ N)
+    ↓ 摘要筛选
+通过摘要 (K 篇, K ≤ M)
+    ↓ 全文预览
+最终纳入 (L 篇, L ≤ K) → Phase 2
+```
+
+**输出**：`prisma_flow.json`（记录每阶段筛选数量和排除原因）
 
 ---
 
@@ -197,9 +254,12 @@ author: "Hermes Agent"
    
    Phase 2: 读取8-15篇全文，提取关键句按主题分类
    
+   Phase 1.5: PRISMA初筛（如候选>50篇）→ 标题→摘要→全文三阶段筛选
+   Phase 2: 读取筛选后8-15篇全文，提取关键句按主题分类
+   
    Phase 3-4: 生成大纲 → 逐节写作，每段嵌入真实句子
    
-   Phase 5: 引用合规检查（确认所有引用真实）
+   Phase 5: 引用合规检查 + Citation Grounding（逐句验证原文存在性）
    
    Phase 6: avoid-ai-writing 润色 → 输出含完整引用的论文
 ```
@@ -229,6 +289,7 @@ author: "Hermes Agent"
 | MCP `mcp_sciverse_read_content` | Phase 1 | 字节级读取论文全文 |
 | `mineru` | Phase 1 | PDF/Word/PPT → Markdown（公式+表格+OCR） |
 | `academic-citation-manager` | Phase 4/5 | 引用格式验证 + 6格式生成 + DOCX插入 |
+| `citation-grounding` | Phase 5 | 逐句文献溯源验证（消除幻觉） |
 | `avoid-ai-writing` | Phase 6 | 去AI味润色 |
 
 ---
