@@ -248,12 +248,98 @@
 | 被引百分位排序 | `sort_by_year="desc"` | ✅ |
 | 语义搜索质量模式 | `semantic_search(query, mode="quality")` | ✅ LLM改写+混合检索 |
 
-### ⚠️ 使用注意事项
+### Sciverse 功能 → 论文写作阶段映射
+
+Sciverse MCP 覆盖 `citation-grounded-writing` 7 阶段管线的 Phase 1-6：
+
+**Phase 1 — 搜索**（找到相关文献）
+- `search_papers` 基础关键词搜索
+- `search_papers` + `freshness_boost` — 最新论文优先
+- `search_papers` + `language` — 中文/英文定向搜索
+- `search_papers` + `type` — 指定 Review/Article/Conference
+- `search_papers` + `citation_count` / `fwci` / `is_in_top_10%` — 高质量筛选
+- `search_papers` + `publication_venue_type` — 只看期刊或只看会议
+- `semantic_search` fast 模式 — 快速初筛
+
+**Phase 1.5 — PRISMA 初筛**（标题→摘要→全文三阶段）
+- `search_papers` + `title_contains` — 标题层筛选
+- `semantic_search` balanced/quality 模式 — 摘要层语义匹配
+- `search_papers` + `access_oa_status` — 排除 Closed Access（避免 read_content 404）
+- `search_papers` + `page_size=50` — 批量拉取候选集
+- `metadata_type=ebook` — 补充书籍类文献（教材/专著）
+
+**Phase 2 — 阅读**（精读全文提取原文）
+- `read_content` 分页读取 — 全文精读（offset+limit 循环拉取）
+- `read_content` 提取原文句子 — 作为引用来源
+- `get_resource` — 下载论文中的图表/数据（用于配图参考）
+
+**Phase 3 — 大纲**（构建引用网络）
+- `search_papers` + `related_works` — 关联论文发现，补全引用网络
+- `search_papers` + `references` — 前向引用追踪
+- `semantic_search` quality 模式 — 深度语义探索，发现潜在关联
+
+**Phase 4 — 写作 + 引用**（逐句嵌入引用）
+- `read_content` 精确 offset — 逐句提取原文（段落级定位）
+- `search_papers` + `MATCH_PHRASE` — 精确短语匹配验证引用准确性
+- `search_papers` + `doi` — DOI 精确定位某篇特定文献
+
+**Phase 5 — 合规检查**（验证引用质量）
+- `search_papers` + `is_in_top_1%` — 验证引用的论文是否为顶级期刊
+- `search_papers` + `fwci` 范围 — 交叉验证引用影响力数据
+- `semantic_search` + `source_types=["pdf"]` — 确认引用来自 PDF 全文而非网页摘要
+
+**Phase 6 — Citation Grounding 验证**（逐句溯源）
+- `semantic_search` quality 模式 — 逐句 claim 匹配检索
+- `read_content` 全文验证 — 检查匹配到的原文是否支持 claim
+- `get_resource` — 验证图表引用是否与原文一致
+
+**Phase 7 — 去 AI 味 + Word 批注**（不依赖 Sciverse）
+- 此阶段使用 `avoid-ai-writing` + `add-docx-comments`，不使用 Sciverse
+
+> 核心链路：`search_papers` 找文献 → `semantic_search` 语义匹配 → `read_content` 全文精读 → `get_resource` 图表提取
+
+### Sciverse 全功能验证报告（2026-06-19）
+
+| 功能 | 状态 | 备注 |
+|------|------|------|
+| `search_papers` 基础搜索 | ✅ | 中英文均可，total_count=10,000+ |
+| `search_papers` + `type` 过滤 | ✅ | Review/article/conference 等 20 种 |
+| `search_papers` + `language` 过滤 | ✅ | zh/en/de/fr 等 20+ 语言 |
+| `search_papers` + `access_oa_status` 过滤 | ✅ | gold/green/bronze/hybrid/diamond/closed |
+| `search_papers` + `publication_venue_type` 过滤 | ✅ | journal/conference/repository 等 |
+| `search_papers` + `fwci` 范围过滤 | ✅ | >=5.0 高影响力论文可筛 |
+| `search_papers` + `primary_topic.domain` 过滤 | ❌ | 返回空，nested 字段需特定格式，建议用 `subjects` 替代 |
+| `search_papers` + `freshness_boost` | ✅ | MILD/STRONG 可用，与 sort_by_year 互斥 |
+| `search_papers` + `sort_by_year` | ✅ | asc/desc/none |
+| `search_papers` + `citation_count` 范围 | ✅ | GT/GTE/LT/LTE 均可 |
+| `search_papers` + `is_in_top_10_percent` | ✅ | Boolean 过滤 |
+| `search_papers` + `MATCH_PHRASE` | ✅ | 精确短语匹配 |
+| `search_papers` + `metadata_type=ebook` | ✅ | 图书搜索可用 |
+| `semantic_search` fast 模式 | ✅ | ~200ms，score 0.91-0.95 |
+| `semantic_search` balanced 模式 | ✅ | ~600ms，score 0.80-0.84 |
+| `semantic_search` quality 模式 | ✅ | 2-4s，score 0.90+ |
+| `semantic_search` + `source_types=["pdf"]` | ✅ | 仅 PDF 全文来源 |
+| `semantic_search` + `source_types=["web"]` | ✅ | 仅网页来源 |
+| `read_content` 分页读取 | ✅ | offset+limit 分段，more=true |
+| `read_content` 中文论文 | ✅ | 41,367 字节 |
+| `read_content` 英文论文 | ✅ | 112,594 字节 |
+| `read_content` 无全文论文 | ❌ | 返回 404（Closed Access） |
+| `get_resource` 图表下载 | ✅ | 需 read_content 中 image ref |
+| `list_catalog` + sample_values | ✅ | 完整 schema + enum 取值 |
+| `filters_advanced` FILTER_OP_IN | ✅ | 数组值匹配 |
+| `filters_advanced` FILTER_OP_EQ | ✅ | 单值精确匹配 |
+| `type=patent` 专利搜索 | ❌ | 不可用，无 patent 枚举值 |
+
+### ⚠️ 使用注意事项（8 条）
 
 1. **`freshness_boost` 与 `sort_by_year` 互斥**：不能同时使用，模糊搜索按相关性排序
 2. **`filters_advanced` 运算符格式**：必须用 `FILTER_OP_IN`/`FILTER_OP_EQ`/`FILTER_OP_GT` 等，不能用 `IN`/`EQ`
 3. **专利搜索不可用**：`type` 字段枚举值中无 `patent`，Sciverse 主要覆盖学术文献
 4. **Closed Access 论文**：`read_content` 返回 404，需 fallback 到 cnki+mineru
+5. **`primary_topic.domain` 过滤返回空**：nested 字段需特定格式，建议用 `subjects` 替代
+6. **Phase 2 阅读前务必先过滤 OA**：加 `access_oa_status IN [gold,green,hybrid,diamond]` 避免 404
+7. **Phase 5 合规检查用 `source_types=["pdf"]`**：确保引用来自 PDF 全文而非网页摘要
+8. **Phase 6 Citation Grounding 用 `quality` 模式**：LLM 改写查询，提高 claim 匹配准确率
 
 ### 15 个官方场景案例
 

@@ -281,16 +281,17 @@ Sciverse 搜索结果 (N 篇)
 
 ## 依赖技能列表
 
-| 技能 | 阶段 | 角色 |
-|------|------|------|
-| `cnki` | Phase 1 | 中国知网检索 + PDF/CAJ 下载（机构IP授权） |
-| MCP `mcp_sciverse_search_papers` | Phase 1 | 结构化文献过滤搜索（50+字段） |
-| MCP `mcp_sciverse_semantic_search` | Phase 1 | 语义搜索（补足概念性匹配） |
-| MCP `mcp_sciverse_read_content` | Phase 1 | 字节级读取论文全文 |
-| `mineru` | Phase 1 | PDF/Word/PPT → Markdown（公式+表格+OCR） |
-| `academic-citation-manager` | Phase 4/5 | 引用格式验证 + 6格式生成 + DOCX插入 |
-| `citation-grounding` | Phase 5 | 逐句文献溯源验证（消除幻觉） |
-| `avoid-ai-writing` | Phase 6 | 去AI味润色 |
+| 技能 | 使用阶段 | 角色 |
+|------|----------|------|
+| MCP `mcp_sciverse_search_papers` | Phase 1, 1.5, 3, 4, 5 | 结构化搜索：关键词/过滤/排序/高质量筛选 |
+| MCP `mcp_sciverse_semantic_search` | Phase 1(fast), 1.5(balanced), 3(quality), 4(quality), 5(pdf), 6(quality) | 语义匹配：三模式按阶段选用 |
+| MCP `mcp_sciverse_read_content` | Phase 2, 4, 6 | 全文精读：分页读取+原文提取+引用验证 |
+| MCP `mcp_sciverse_get_resource` | Phase 2, 6 | 图表下载：参考+验证 |
+| `cnki` | Phase 1, 2 | 知网检索+PDF下载（sciverse 404时fallback） |
+| `mineru` | Phase 2 | PDF/Word→Markdown解析（sciverse 404时fallback） |
+| `academic-citation-manager` | Phase 4, 5 | 引用格式验证+6格式生成+DOCX插入 |
+| `citation-grounding` | Phase 6 | 逐句文献溯源验证（消除幻觉） |
+| `avoid-ai-writing` | Phase 7 | 去AI味润色 |
 
 ---
 
