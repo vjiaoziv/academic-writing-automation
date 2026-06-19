@@ -56,8 +56,8 @@
 | 阶段 | 描述 | 工具 |
 |------|------|------|
 | Phase 0 配置 | 自动确定中英文范围、引用数量、写作风格 | - |
-| Phase 1 三路并发搜索 | 中文cnki + 英文sciverse + arxiv | cnki + sciverse + arxiv |
-| Phase 2 下载解析 | PDF/全文下载 → Markdown解析 | mineru + sciverse |
+| Phase 1 搜索 | Sciverse中英文首选 + arxiv补充 + cnki备用 | sciverse + arxiv + cnki |
+| Phase 2 阅读原文 | Sciverse read_content 首选 → mineru PDF解析备用 | sciverse + mineru |
 | Phase 3 全文精读 | 逐篇完整阅读，按主题分类 | read_content |
 | Phase 4 自动大纲 | 生成论文结构，预分配引用位置 | AI生成 |
 | Phase 5 逐节写作 | 嵌入原文句子 + 四道合规门禁 | avoid-ai-writing |
@@ -111,8 +111,8 @@ python scripts/add_docx_comments.py 输入.docx 输出.docx 批注清单.json
 - 去AI味/润色 → `avoid-ai-writing` (rewrite模式) 🔄
 - 检查AI痕迹 → `avoid-ai-writing` (detect模式) 🔄
 - 搜论文（中英文） → MCP `mcp_sciverse` 🔵
-- 搜中文论文 → `cnki` 🔄
-- 读PDF全文 → `mineru` 🌐
+- 搜中文论文 → `mcp_sciverse` 🔵 首选（4.65亿中英双语），`cnki` 🔄 备用
+- 读论文全文 → `mcp_sciverse` 🔵 首选（read_content 段落级），`mineru` 🌐 备用
 - 插入参考文献 → `academic-citation-manager` 🔶
 - 论文配图 → `academic-figures` 🔶
 - 批注Word文档 → `add-docx-comments` 📦
@@ -137,8 +137,8 @@ python scripts/add_docx_comments.py 输入.docx 输出.docx 批注清单.json
 
 | 工具 | 安装方式 | 用途 | 来源 | 许可证 |
 |------|---------|------|------|--------|
-| `cnki` | `~/.hermes/skills/cnki/` | 知网论文搜索下载（需校园网） | 本地 Playwright 独立实现（与 jirboy MCP 版不同） | 见说明 |
-| `mineru` | 配置 `MINERU_TOKEN` 到 `.env` | PDF/Word → Markdown 解析 | [OpenDataLab](https://github.com/opendatalab/MinerU) | AGPL-3.0 |
+| `cnki` | `~/.hermes/skills/cnki/` | 知网论文搜索下载（**备用**，需校园网） | 本地 Playwright 独立实现（与 jirboy MCP 版不同） | 见说明 |
+| `mineru` | 配置 `MINERU_TOKEN` 到 `.env` | PDF/Word → Markdown 解析（**备用**） | [OpenDataLab](https://github.com/opendatalab/MinerU) | AGPL-3.0 |
 | `avoid-ai-writing` | SkillHub | 去AI味检测与改写 | 本地修改版（原版：conorbrondon v3.10.0） | 见原作者 |
 | `paper-revision-sop` | ClawHub | 论文润色5阶段SOP | [liuwenqi123123](https://clawhub.ai/liuwenqi123123/paper-revision-sop) | 见原作者 |
 | `academic-figures` | SkillHub | 14种学术图表 | [docsor1212](https://clawhub.com/skills/academic-figures) via SkillHub | 见原作者 |
@@ -210,8 +210,8 @@ academic-writing-automation/
 |------|------|------|--------|
 | ARS路由入口 | `ars-hub` | [ARS](https://github.com/Imbad0202/academic-research-skills) (Cheng-I Wu) | CC-BY-NC-4.0 |
 | ARS快捷命令 | `ars-commands` | [ARS](https://github.com/Imbad0202/academic-research-skills) (Cheng-I Wu) | CC-BY-NC-4.0 |
-| 文献检索 | `cnki`（本地独立实现）, `arxiv`（本地独立实现）, MCP `mcp_sciverse`（OpenDataLab） | 本地/OpenDataLab | 见各来源 |
-| PDF解析 | `mineru` | [OpenDataLab](https://github.com/opendatalab/MinerU) | AGPL-3.0 |
+| 文献检索 | MCP `mcp_sciverse`（OpenDataLab，**首选**）, `cnki`（本地独立实现，**备用**）, `arxiv`（本地独立实现） | 本地/OpenDataLab | 见各来源 |
+| PDF解析 | `mineru`（OpenDataLab，**备用**） | [OpenDataLab](https://github.com/opendatalab/MinerU) | AGPL-3.0 |
 | 去AI味 | `avoid-ai-writing` | 本地修改版（原版：conorbrondon） | 见原作者 |
 | 论文润色 | `paper-revision-sop` | [liuwenqi123123](https://clawhub.ai/liuwenqi123123/paper-revision-sop) (ClawHub) | 见原作者 |
 | 图表生成 | `academic-figures` | [docsor1212](https://clawhub.com/skills/academic-figures) via SkillHub | 见原作者 |

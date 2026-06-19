@@ -56,7 +56,7 @@
 
 **去AI味：** 统一使用 `avoid-ai-writing`（detect/rewrite 模式，academic 配置）
 
-**写论文铁律：** 所有论文写作必须基于真实参考文献原文句子佐证，由 `citation-grounded-writing` 执行。中文文献走 cnki，英文文献走 sciverse+arxiv
+**写论文铁律：** 所有论文写作必须基于真实参考文献原文句子佐证，由 `citation-grounded-writing` 执行。首选 Sciverse（中英文+原文段落），fallback cnki（下载PDF）+ mineru（解析PDF），arxiv 补充预印本
 
 **Word批注：** 审核论文时优先使用 `add-docx-comments` 在 .docx 中插入真实批注
 
@@ -66,7 +66,7 @@
 
 📦 `citation-grounded-writing` v1.1.0 — 首选：写任何论文
 - 来源：本仓库自创 | 许可证：MIT
-- 6阶段全流程，基于真实参考文献原文句子佐证，双路搜索（cnki中文 + sciverse英文）
+- 6阶段全流程，基于真实参考文献原文句子佐证，Sciverse 中英文首选 + cnki/mineru 备用
 
 🔸 `ars-academic-paper` v3.2.0 — 备用：12-agent全自动论文写作
 - 来源：ARS (Cheng-I Wu / Imbad0202) | 许可证：CC-BY-NC-4.0 ⚠️非商业
@@ -91,7 +91,7 @@
 - 4.65亿+记录，2832万AI-Ready全文，支持DOI/作者/期刊/年份/学科过滤
 - semantic search 精准段落匹配，read_content 读取原文完整段落作为引用佐证
 
-🔄 `cnki` — 首选：中文知网检索（**本地版为 Playwright 独立实现**，与 jirboy 的 MCP 版不同）
+🔄 `cnki` — 备用：中文知网检索（**本地版为 Playwright 独立实现**，与 jirboy 的 MCP 版不同）
 - 来源：本地独立实现 | Playwright自动化，8子命令，机构IP授权免登录
 
 📦 `arxiv` — arXiv英文论文（**本地版为 curl REST API 独立实现**，与 ractorrr 版不同）
@@ -103,7 +103,7 @@
 - 来源：OpenDataLab | 平台：https://sciverse.opendatalab.com/
 - 读取原文完整段落，按offset分页获取，可作为引用证据
 
-🌐 `mineru` — 中英文PDF/Word → Markdown解析
+🌐 `mineru` — 备用：中英文PDF/Word → Markdown解析（sciverse read_content 失败时回退）
 - 来源：OpenDataLab | 许可证：AGPL-3.0 | https://github.com/opendatalab/MinerU
 - API v4，支持公式/表格/OCR
 
@@ -205,8 +205,8 @@
 | 批注Word文档 | `add-docx-comments` 📦 | `paper-revision-sop` 🔶 | 自创 MIT |
 | 从研究到发表全流程 | `ars-academic-pipeline` 🔸 | - | CC-BY-NC-4.0 ⚠️非商业 |
 | 搜英文论文 | `mcp_sciverse` 🔵 | `arxiv` 📦 | OpenDataLab Sciverse，4.65亿记录中英双语检索+段落佐证 |
-| 搜中文论文 | `mcp_sciverse` 🔵 / `cnki` 🔄 | - | sciverse 覆盖中文文献，cnki 知网深度补充 |
-| 读论文全文 | `mineru` 🌐 | `mcp_sciverse read_content` 🔵 | AGPL-3.0 |
+| 搜中文论文 | `mcp_sciverse` 🔵 首选 / `cnki` 🔄 备用 | - | sciverse 4.65亿覆盖中英文，cnki 知网深度补充 |
+| 读论文全文 | `mcp_sciverse` 🔵 首选（read_content） | `mineru` 🌐 备用 | sciverse 段落级引用首选，mineru PDF解析备用 |
 | 引用管理 | `academic-citation-manager` 🔶 | - | YouStudyeveryday MIT，唯一引用管理工具 |
 | 论文配图 | `academic-figures` 🔶 | - | docsor1212 |
 | 润色/去AI味 | `avoid-ai-writing` 🔄 (rewrite, academic) | `paper-revision-sop` 🔶 | |
@@ -262,7 +262,7 @@ POST https://mineru.net/api/v4/extract/task
 
 1. **同名技能混淆**（本文件已标记🔄）：`avoid-ai-writing`、`cnki`、`arxiv`、`deep-research` 的本地实现与 SkillHub 同名版代码不同
 2. **cnki PDF下载有bug**：input() 阻塞 + .brief 选择器超时。使用 auto-download 模式或手动复制URL
-3. **Closed Access论文**：sciverse read_content 返回404。解法：通过cnki下载PDF→用mineru解析
+3. **Closed Access论文**：sciverse read_content 返回404。优先选OA论文；fallback：cnki下载PDF→mineru解析
 4. **citation-grounded-writing v1.1.0**：新建技能，尚未经过真人实战测试
 5. **SkillHub发布**：需用户完成实名认证后才可发布
 6. **待确认作者**：`cn-academic-writing`、`scau-thesis-template`、`academic-paper-literature-analyzer`、`docx-table-merge` 的来源和作者尚待确认

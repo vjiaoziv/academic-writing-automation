@@ -1,7 +1,7 @@
 ---
 name: citation-grounded-writing
-version: 1.1.0
-description: "全自动化论文写作——自动搜索、下载、解析、阅读参考文献全文，提取真实句子嵌入正文写作。集成：cnki / MCP sciverse / mineru / academic-citation-manager / avoid-ai-writing。强制规则：每条引用必须有原文佐证，禁止虚构引用。"
+version: 1.1.3
+description: "全自动化论文写作——自动搜索、下载、解析、阅读参考文献全文，提取真实句子嵌入正文写作。集成：MCP sciverse（首选，中英文4.65亿记录+原文段落）/ cnki（备用，知网下载PDF）/ mineru（备用，PDF解析）/ academic-citation-manager / avoid-ai-writing。强制规则：每条引用必须有原文佐证，禁止虚构引用。"
 tags: [academic, writing, citation, grounded, evidence-based, full-automation]
 author: "Hermes Agent"
 ---
@@ -39,7 +39,7 @@ author: "Hermes Agent"
 
 **需确认项**：
 1. 论文语言（中文/英文/中英混合）
-2. 是否需要中文文献（默认需要，走 cnki）
+2. 是否需要中文文献（默认需要，首选 sciverse 中英文搜索，cnki 备用）
 3. 是否需要英文文献（默认需要，走 sciverse + arXiv + Semantic Scholar）
 
 **输出**：Paper Configuration Record（配置记录）
@@ -52,7 +52,7 @@ author: "Hermes Agent"
 
 | 路径 | 目标 | 工具 | 搜索策略 |
 |------|------|------|----------|
-| **A. 中文学术** | CSSCI/北大核心/知网期刊 | `cnki`（知网 Playwright 脚本） | 搜索核心关键词 + 中文同义词，限定核心期刊，取近5年 |
+| **A. 中文学术** | CSSCI/北大核心/知网期刊 | `mcp_sciverse`（首选）+ `cnki`（备用） | sciverse 4.65亿中英双语检索，cnki 知网深度补充 |
 | **B. 英文学术** | 国际期刊/顶会论文 | `mcp_sciverse_search_papers`（结构化过滤）<br>`arxiv`（预印本补充） | 搜索核心关键词，限定年份+学科，按引用数/相关性降序 |
 | **C. 语义补充** | 找到高相关段落备用 | `mcp_sciverse_semantic_search` | 用自然语言描述研究问题，找到精准匹配的文献 |
 
@@ -68,7 +68,7 @@ author: "Hermes Agent"
 
 | 来源 | 获取方式 | 解析方式 |
 |------|----------|----------|
-| 知网（cnki） | `cnki` Playwright → PDF下载（机构IP授权） | `mineru` PDF→Markdown |
+| 知网（cnki） | `cnki` Playwright → PDF下载（机构IP授权，**备用**） | `mineru` PDF→Markdown（**备用**） |
 | arXiv | 直接获取 arXiv PDF URL | `mineru` PDF→Markdown |
 | sciverse 已索引 | `mcp_sciverse_read_content`（字节级读取） | 直接返回文本 |
 | 其他开放获取 | 搜索 free PDF + 下载 | `mineru` 或 `web_extract` |
@@ -188,9 +188,10 @@ author: "Hermes Agent"
 ⟫ 我（citation-grounded-writing）：
    Phase 0: 论文主题确认、引用格式=GB/T 7714、语言=中文+英文
    Phase 1:
-     ├─ 路径A（中文）：cnki 搜"人工智能 高等教育 质量保障" → 下载PDF → mineru 解析
+     ├─ 路径A（中文）：sciverse 搜"人工智能 高等教育 质量保障" → read_content 读原文（首选）
+     │                fallback：cnki 搜 → 下载PDF → mineru 解析
      ├─ 路径B（英文）：mcp_sciverse_search_papers "AI higher education quality assurance"
-     │                + arXiv 补充 → mineru/MCP read_content 读全文
+     │                + arXiv 补充 → MCP read_content 读全文
      └─ 路径C（语义）：mcp_sciverse_semantic_search "how AI affects higher education quality"
    
    Phase 2: 读取8-15篇全文，提取关键句按主题分类

@@ -60,7 +60,7 @@ ARS 由 **Cheng-I Wu / Imbad0202** 开发并维护。
 | 本地技能名称 | 本地实现特点 | SkillHub 同名版本 | 差异说明 |
 |-------------|-------------|-------------------|----------|
 | `avoid-ai-writing` | 含中文路由表、子技能引用，结构不同 | conorbrondon v3.10.0 英文原版，含 Voice Profiles | 本地版是修改/精简版，去掉了 Voice Profiles |
-| `cnki` | Python Playwright 自动化（`cnki_auto.py`） | jirboy 的 MCP Chrome DevTools 版本 | 架构完全不同（Playwright vs MCP） |
+| `cnki` | Python Playwright 自动化（`cnki_auto.py`） | jirboy 的 MCP Chrome DevTools 版本 | 架构完全不同（Playwright vs MCP） | **备用**（sciverse 首选） |
 | `deep-research` | 实事求是/科学客观原则，Phases 阶段 | user_8e810118 的问题优先/深度优先，Steps 步骤 | 核心原则和工作流不同 |
 
 本地版本的版权归属于各自的修改者。使用时请注意区分，不要混淆为 SkillHub 原版。
@@ -80,7 +80,7 @@ ARS 由 **Cheng-I Wu / Imbad0202** 开发并维护。
 
 | 服务 | 提供方 | 用途 | 相关链接 |
 |------|--------|------|----------|
-| MinerU API | OpenDataLab | PDF/Word → Markdown 解析 | https://mineru.net/ / https://github.com/opendatalab/MinerU (AGPL-3.0) |
+| MinerU API | OpenDataLab | PDF/Word → Markdown 解析（**备用**，sciverse read_content 失败时回退） | https://mineru.net/ / https://github.com/opendatalab/MinerU (AGPL-3.0) |
 | CNKI 知网 | 中国知网 (清华同方) | 中文论文搜索与下载 | https://cnki.net/ |
 | arXiv | Cornell University | 预印本论文搜索 | https://arxiv.org/ |
 | CrossRef | Crossref | DOI元数据查询 | https://www.crossref.org/ |
