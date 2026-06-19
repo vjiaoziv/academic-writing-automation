@@ -22,8 +22,8 @@
 - GitHub：https://github.com/Imbad0202/academic-research-skills
 - 包含：ars-academic-paper / ars-deep-research / ars-academic-paper-reviewer / ars-academic-pipeline / ars-hub / ars-commands
 
-🔵 **Hermes 平台内置（Nous Research）**
-- `mcp_sciverse` 系列 MCP 工具
+🔵 **OpenDataLab 平台服务**
+- `mcp_sciverse` 系列 MCP 工具 — (https://sciverse.opendatalab.com/)
 
 🔶 **ClawHub / SkillHub 社区技能（从社区下载安装，保留原作者版权）**
 - `academic-figures` — docsor1212 (ClawHub)
@@ -87,7 +87,7 @@
 ## 二、文献检索（入口）
 
 🔵 `mcp_sciverse` (MCP) — 首选：英文论文检索
-- 来源：Hermes 平台内置（Nous Research）
+- 来源：OpenDataLab | 平台：https://sciverse.opendatalab.com/
 - 10000+论文，支持DOI/作者/期刊/年份/学科过滤
 
 🔄 `cnki` — 首选：中文知网检索（**本地版为 Playwright 独立实现**，与 jirboy 的 MCP 版不同）
@@ -99,7 +99,7 @@
 ## 三、文献阅读与引用
 
 🔵 `mcp_sciverse read_content` — 英文论文全文阅读
-- 来源：Hermes 平台内置 | Open Access论文直接读内容段
+- 来源：OpenDataLab | 平台：https://sciverse.opendatalab.com/
 
 🌐 `mineru` — 中英文PDF/Word → Markdown解析
 - 来源：OpenDataLab | 许可证：AGPL-3.0 | https://github.com/opendatalab/MinerU
@@ -202,7 +202,7 @@
 | AIGC检测 | `avoid-ai-writing` 🔄 (detect模式) | - | 本地修改版 |
 | 批注Word文档 | `add-docx-comments` 📦 | `paper-revision-sop` 🔶 | 自创 MIT |
 | 从研究到发表全流程 | `ars-academic-pipeline` 🔸 | - | CC-BY-NC-4.0 ⚠️非商业 |
-| 搜英文论文 | `mcp_sciverse` 🔵 | `arxiv` 📦 | sciverse 是 Hermes 内置 MCP |
+| 搜英文论文 | `mcp_sciverse` 🔵 | `arxiv` 📦 | OpenDataLab Sciverse, 详见 https://sciverse.opendatalab.com/ |
 | 搜中文论文 | `cnki` 🔄 | - | 本地 Playwright 独立实现 |
 | 读论文全文 | `mineru` 🌐 | `mcp_sciverse read_content` 🔵 | AGPL-3.0 |
 | 引用管理 | `academic-citation-manager` 🔶 | - | YouStudyeveryday MIT，唯一引用管理工具 |
@@ -220,9 +220,9 @@
 
 ---
 
-## 十、工具概览：Hermes MCP Sciverse
+## 十、工具概览：MCP Sciverse — OpenDataLab
 
-来源：Hermes 平台内置 MCP 工具（Nous Research）
+来源：OpenDataLab (https://sciverse.opendatalab.com/) — 学术论文语义搜索引擎。
 
 - `mcp_sciverse_search_papers` — 结构化论文搜索
 - `mcp_sciverse_semantic_search` — 自然语言语义搜索

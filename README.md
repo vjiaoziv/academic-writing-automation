@@ -210,7 +210,7 @@ academic-writing-automation/
 |------|------|------|--------|
 | ARS路由入口 | `ars-hub` | [ARS](https://github.com/Imbad0202/academic-research-skills) (Cheng-I Wu) | CC-BY-NC-4.0 |
 | ARS快捷命令 | `ars-commands` | [ARS](https://github.com/Imbad0202/academic-research-skills) (Cheng-I Wu) | CC-BY-NC-4.0 |
-| 文献检索 | `cnki`（本地独立实现）, `arxiv`（本地独立实现）, MCP `mcp_sciverse` | 本地/Hermes内置 | 见各来源 |
+| 文献检索 | `cnki`（本地独立实现）, `arxiv`（本地独立实现）, MCP `mcp_sciverse`（OpenDataLab） | 本地/OpenDataLab | 见各来源 |
 | PDF解析 | `mineru` | [OpenDataLab](https://github.com/opendatalab/MinerU) | AGPL-3.0 |
 | 去AI味 | `avoid-ai-writing` | 本地修改版（原版：conorbrondon） | 见原作者 |
 | 论文润色 | `paper-revision-sop` | [liuwenqi123123](https://clawhub.ai/liuwenqi123123/paper-revision-sop) (ClawHub) | 见原作者 |
@@ -234,7 +234,7 @@ academic-writing-automation/
 - **academic-figures** — docsor1212 via SkillHub
 - **avoid-ai-writing** — 本地修改版，原版作者 conorbrondon via ClawHub
 - **MinerU** — OpenDataLab，AGPL-3.0
-- **MCP sciverse** — Nous Research / Hermes 平台内置
+- **MCP sciverse** — OpenDataLab (https://sciverse.opendatalab.com/)
 - **其他 SkillHub 社区技能** — 各自原作者
 
 > ⚠️ **关于同名不同实现的技能**：`cnki`、`avoid-ai-writing`、`deep-research` 的本地安装版本与 SkillHub 上同名技能的代码不同（架构、功能、工作流均有差异）。这些本地版本的版权不属于 SkillHub 原作者，但也不属于本仓库自创——它们是独立的修改/重实现版本。使用前请注意区分。

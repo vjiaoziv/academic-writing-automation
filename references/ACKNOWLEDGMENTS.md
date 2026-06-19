@@ -71,7 +71,7 @@ ARS 由 **Cheng-I Wu / Imbad0202** 开发并维护。
 
 | 工具 | 提供方 | 说明 |
 |------|--------|------|
-| MCP `mcp_sciverse`（含5个子工具） | Nous Research / Hermes 平台 | 论文语义搜索引擎 |
+| MCP `mcp_sciverse`（含5个子工具） | OpenDataLab | 学术论文语义搜索引擎 | https://sciverse.opendatalab.com/ |
 | `send_message`, `terminal`, `write_file`, `web_search` 等 | Nous Research / Hermes 平台 | Hermes Agent 基础工具集 |
 
 ---
@@ -84,7 +84,7 @@ ARS 由 **Cheng-I Wu / Imbad0202** 开发并维护。
 | CNKI 知网 | 中国知网 (清华同方) | 中文论文搜索与下载 | https://cnki.net/ |
 | arXiv | Cornell University | 预印本论文搜索 | https://arxiv.org/ |
 | CrossRef | Crossref | DOI元数据查询 | https://www.crossref.org/ |
-| Hermes MCP Sciverse | Nous Research | 学术论文语义搜索 | Hermes 平台内置 |
+| Sciverse | OpenDataLab | 学术论文语义搜索 | https://sciverse.opendatalab.com/ |
 
 使用上述服务时，请遵守各平台的服务条款和 API 使用规范。
 
