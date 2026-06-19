@@ -75,9 +75,46 @@
 | `ars-academic-pipeline` | 从研究到发表全流程 | 10阶段编排器，6个质量门 |
 | `academic-paper-literature-analyzer` | 文献分析与论文框架建立 | 参考文献分析/观点提炼/框架关联 |
 
+## 七、ARS 快捷命令集（ars-commands）
+
+ARS 提供 16 个 `/ars-*` 快捷命令，覆盖论文写作全流程的常用操作：
+
+| 命令 | 用途 | 调用技能 |
+|------|------|---------|
+| `/ars-full` | 端到端完整工作流（Stage 1→6） | `ars-academic-pipeline` |
+| `/ars-plan` | 苏格拉底式逐章规划 | `ars-academic-paper` (plan模式) |
+| `/ars-outline` | 详细大纲 + 证据地图 | `ars-academic-paper` (outline-only) |
+| `/ars-abstract` | 双语摘要 + 关键词 | `ars-academic-paper` (abstract-only) |
+| `/ars-lit-review` | 文献综述 | `ars-academic-paper` 或 `ars-deep-research` |
+| `/ars-reviewer` | 同行评审面板 | `ars-academic-paper-reviewer` |
+| `/ars-revision` | 修订稿 + 逐条修改说明 | `ars-academic-paper` (revision模式) |
+| `/ars-revision-coach` | 修订路线图 + 回复函骨架 | `ars-academic-paper` (revision-coach) |
+| `/ars-citation-check` | 引用错误报告 | `ars-academic-paper` (citation-check) |
+| `/ars-format-convert` | 格式转换（LaTeX/DOCX/PDF/MD） | `ars-academic-paper` (format-convert) |
+| `/ars-3w` | WHY/HOW/WHAT 三路扫描 | `ars-deep-research` (three-way-scan) |
+| `/ars-rebuttal-audit` | 审计回复草稿质量 | `ars-academic-paper` (rebuttal-audit) |
+| `/ars-disclosure` | AI使用声明生成 | `ars-academic-paper` (disclosure) |
+| `/ars-mark-read` | 标记已读信号 | CLI脚本 |
+| `/ars-unmark-read` | 取消已读标记 | CLI脚本 |
+| `/ars-cache-invalidate` | 失效引用验证缓存 | CLI脚本 |
+
+## 八、ARS Hub — 路由入口
+
+`ars-hub` 是 ARS 套件的中心路由层，本身不执行任务，负责将用户需求路由到正确的子技能：
+
+| 用户需求 | 路由到 |
+|---------|--------|
+| 做研究/文献综述/系统性回顾 | `ars-deep-research` |
+| 写论文/论文修改/检查引用 | `ars-academic-paper` |
+| 评审论文/同行评审模拟 | `ars-academic-paper-reviewer` |
+| 从研究到发表全流程 | `ars-academic-pipeline` |
+| 不确定研究方向 | `ars-deep-research` (Socratic模式) |
+
+ARS 本地仓库路径：`C:/Users/JIAOZI/projects/academic-research-skills/`
+
 ---
 
-## 七、路由决策表
+## 九、路由决策表
 
 | 需求场景 | 首选技能/工具 | 备份技能 | 说明 |
 |---------|-------------|---------|------|
@@ -87,9 +124,9 @@
 | 写中文思政论文 | `citation-grounded-writing` | `cn-academic-writing` | 先用citation-grounded-writing全程自动化，再按cn-academic-writing格式规范调整 |
 | 评审论文（同行评审模拟） | `ars-academic-paper-reviewer` | - | 7-agent，主编+3审稿人+魔鬼代言人 |
 | 审核论文（检查质量） | `paper-revision-sop` | `ars-academic-paper-reviewer` | 5阶段诊断+分级修改，审稿意见回复也用此 |
-| 回复审稿意见 | `paper-revision-sop` (Phase 0 + Phase 3) | - | 提取可执行项+分类优先级+分级改写 |
+| 回复审稿意见 | `paper-revision-sop` (Phase 0 + Phase 3) | `ars-academic-paper` (revision模式) | 提取可执行项+分类优先级+分级改写 |
 | AIGC检测 | `avoid-ai-writing` (detect模式) | - | 30+ AI-ism模式检测，仅标注不修改 |
-| 批注论文 | `add-docx-comments` | `paper-revision-sop` (Word批注) | 独立skill：用lxml操作OOXML在Word中插入真实批注 |
+| 批注论文 | `add-docx-comments` | `paper-revision-sop` (Word批注) | 在paper-revision-sop的Phase 2使用，将诊断结果写入.docx批注，引导Phase 3逐条修改 |
 | 从研究到发表全流程 | `ars-academic-pipeline` | - | 10阶段编排器，含质量门 |
 | 找论文/搜文献 | `mcp_sciverse` (英文) / `cnki` (中文) | `arxiv` | 中文用cnki（知网Playwright），英文用sciverse MCP |
 | 读论文全文（PDF/Word） | `mineru` | `mcp_sciverse read_content` | mineru解析PDF/Word→Markdown，含公式表格OCR |
@@ -101,10 +138,13 @@
 | 验证数据一致性 | `data-integrity-audit` | - | CSV/Excel原始数据与论文数据交叉引用审计 |
 | 快速查证一个事实 | `jiaozhen-factcheck` | `web_search` | 对具体说法/资讯/事件查证，优于通用搜索 |
 | ML/AI顶会投稿 | `ml-paper-writing` | `citation-grounded-writing` | 特殊格式要求+实验图表 |
+| 格式转换（LaTeX/DOCX/PDF） | `ars-academic-paper` (format-convert) | - | 支持LaTeX↔DOCX↔PDF↔Markdown |
+| 审计回复草稿 | `ars-academic-paper` (rebuttal-audit) | - | 审计rebuttal/response草稿质量 |
+| 生成AI使用声明 | `ars-academic-paper` (disclosure) | - | 支持ICLR/NeurIPS/Nature/Science/ACL/EMNLP |
 
 ---
 
-## 八、工具概览：Hermes MCP Sciverse
+## 十、工具概览：Hermes MCP Sciverse
 
 学术论文语义搜索引擎，无需额外安装，Hermes 内置 MCP 工具。
 
@@ -116,7 +156,7 @@
 | `mcp_sciverse_get_resource` | 获取图表/图片 | file_name（来自read_content的Markdown图片引用） |
 | `mcp_sciverse_list_catalog` | 查询schema | include_sample_values=true |
 
-## 九、工具概览：CNKI 知网自动化
+## 十一、工具概览：CNKI 知网自动化
 
 Playwright 驱动的知网自动化脚本，校园网 IP 自动授权。
 
@@ -134,7 +174,7 @@ cd ~/.hermes/skills/cnki/scripts && python cnki_auto.py <子命令>
 | `journal-detail` | 期刊详细信息 |
 | `journal-toc` | 期刊目录 |
 
-## 十、工具概览：MinerU PDF解析
+## 十二、工具概览：MinerU PDF解析
 
 MinerU API v4 将 PDF/Word/PPT 转换为 Markdown。
 
@@ -144,7 +184,7 @@ POST https://mineru.net/api/v4/extract/task
 → 获取 task_id → 轮询 state=done → 下载 full_zip_url
 ```
 
-## 十一、已知问题
+## 十三、已知问题
 
 1. **cnki PDF下载有bug**：`download`子命令中 `input()` 阻塞 + `.brief` 选择器超时。解决方法：使用 `auto-download` 模式或手动复制URL
 2. **Closed Access论文**：sciverse read_content 返回404。解法：通过cnki下载PDF→用mineru解析
@@ -161,3 +201,4 @@ POST https://mineru.net/api/v4/extract/task
 - 2026-06-19: 更新 `paper-revision-sop` 内部替换 humanizer → avoid-ai-writing
 - 2026-06-19: 新增 Word文档批注（add_docx_comments.py）为论文批注首选方式
 - 2026-06-19: `add-docx-comments` 独立发布为独立skill
+- 2026-06-19: 补充 ars-hub、ars-commands 到路由表，新增七/八/九章

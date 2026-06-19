@@ -119,6 +119,15 @@ python scripts/add_docx_comments.py 输入.docx 输出.docx 批注清单.json
 | 审稿意见修改 | `paper-revision-sop` |
 | 模拟同行评审 | `ars-academic-paper-reviewer` |
 | 深度研究一个主题 | `ars-deep-research` |
+| 从研究到发表全流程 | `ars-academic-pipeline` |
+| 格式转换（LaTeX/DOCX/PDF） | `/ars-format-convert` |
+| 审计回复草稿 | `/ars-rebuttal-audit` |
+| 生成AI使用声明 | `/ars-disclosure` |
+| 文献综述 | `/ars-lit-review` |
+| 论文大纲 | `/ars-outline` |
+| 论文摘要 | `/ars-abstract` |
+| 引用检查 | `/ars-citation-check` |
+| 三路扫描（比较论文） | `/ars-3w` |
 
 ---
 
@@ -132,7 +141,9 @@ python scripts/add_docx_comments.py 输入.docx 输出.docx 批注清单.json
 | `paper-revision-sop` | SkillHub `skillhub install paper-revision-sop` | 论文润色5阶段SOP |
 | `academic-figures` | SkillHub `skillhub install academic-figures` | 14种学术图表 |
 | `academic-citation-manager` | SkillHub `skillhub install academic-citation-manager` | 6种引用格式 |
-| `ars-academic-paper` | SkillHub `skillhub install ars-academic-paper` | 12-agent论文写作 |
+| `ars-hub` | SkillHub | ARS路由入口（4技能/37+agent/27+模式） |
+| `ars-commands` | SkillHub | 16个`/ars-*`快捷命令 |
+| `ars-academic-paper` | SkillHub | 12-agent论文写作 |
 | `ars-academic-paper-reviewer` | SkillHub | 7-agent同行评审 |
 | `ars-deep-research` | SkillHub | 13-agent深度研究 |
 | `ars-academic-pipeline` | SkillHub | 研究到发表全流程 |
@@ -195,6 +206,8 @@ academic-writing-automation/
 
 | 类别 | 技能 | 来源 |
 |------|------|------|
+| ARS路由入口 | `ars-hub` | SkillHub（本地仓库） |
+| ARS快捷命令 | `ars-commands` | SkillHub（16个`/ars-*`命令） |
 | 文献检索 | `cnki`, `arxiv`, MCP `mcp_sciverse` | Hermes内置/SkillHub |
 | PDF解析 | `mineru` | SkillHub |
 | 去AI味 | `avoid-ai-writing` | SkillHub |
