@@ -133,20 +133,20 @@ python scripts/add_docx_comments.py 输入.docx 输出.docx 批注清单.json
 
 ## 🛠️ 外部工具依赖（需单独安装）
 
-| 工具 | 安装方式 | 用途 |
-|------|---------|------|
-| `cnki` | `~/.hermes/skills/cnki/` | 知网论文搜索下载（需校园网） |
-| `mineru` | 配置 `MINERU_TOKEN` 到 `.env` | PDF/Word → Markdown 解析 |
-| `avoid-ai-writing` | SkillHub `skillhub install avoid-ai-writing` | 去AI味检测与改写 |
-| `paper-revision-sop` | SkillHub `skillhub install paper-revision-sop` | 论文润色5阶段SOP |
-| `academic-figures` | SkillHub `skillhub install academic-figures` | 14种学术图表 |
-| `academic-citation-manager` | SkillHub `skillhub install academic-citation-manager` | 6种引用格式 |
-| `ars-hub` | SkillHub | ARS路由入口（4技能/37+agent/27+模式） |
-| `ars-commands` | SkillHub | 16个`/ars-*`快捷命令 |
-| `ars-academic-paper` | SkillHub | 12-agent论文写作 |
-| `ars-academic-paper-reviewer` | SkillHub | 7-agent同行评审 |
-| `ars-deep-research` | SkillHub | 13-agent深度研究 |
-| `ars-academic-pipeline` | SkillHub | 研究到发表全流程 |
+| 工具 | 安装方式 | 用途 | 来源 | 许可证 |
+|------|---------|------|------|--------|
+| `cnki` | `~/.hermes/skills/cnki/` | 知网论文搜索下载（需校园网） | SkillHub 社区 | 见原作者 |
+| `mineru` | 配置 `MINERU_TOKEN` 到 `.env` | PDF/Word → Markdown 解析 | [OpenDataLab](https://github.com/opendatalab/MinerU) | AGPL-3.0 |
+| `avoid-ai-writing` | SkillHub `skillhub install avoid-ai-writing` | 去AI味检测与改写 | SkillHub 社区 | 见原作者 |
+| `paper-revision-sop` | SkillHub `skillhub install paper-revision-sop` | 论文润色5阶段SOP | Hermes Agent（内部技能） | MIT |
+| `academic-figures` | SkillHub `skillhub install academic-figures` | 14种学术图表 | [docsor1212](https://clawhub.com/skills/academic-figures) via SkillHub | 见原作者 |
+| `academic-citation-manager` | SkillHub `skillhub install academic-citation-manager` | 6种引用格式 | [YouStudyeveryday](https://github.com/YouStudyeveryday/academic-citation-manager) | MIT |
+| `ars-hub` | SkillHub | ARS路由入口（4技能/37+agent/27+模式） | [ARS](https://github.com/Imbad0202/academic-research-skills) (Cheng-I Wu) | CC-BY-NC-4.0 |
+| `ars-commands` | SkillHub | 16个`/ars-*`快捷命令 | [ARS](https://github.com/Imbad0202/academic-research-skills) (Cheng-I Wu) | CC-BY-NC-4.0 |
+| `ars-academic-paper` | SkillHub | 12-agent论文写作 | [ARS](https://github.com/Imbad0202/academic-research-skills) (Cheng-I Wu) | CC-BY-NC-4.0 |
+| `ars-academic-paper-reviewer` | SkillHub | 7-agent同行评审 | [ARS](https://github.com/Imbad0202/academic-research-skills) (Cheng-I Wu) | CC-BY-NC-4.0 |
+| `ars-deep-research` | SkillHub | 13-agent深度研究 | [ARS](https://github.com/Imbad0202/academic-research-skills) (Cheng-I Wu) | CC-BY-NC-4.0 |
+| `ars-academic-pipeline` | SkillHub | 研究到发表全流程 | [ARS](https://github.com/Imbad0202/academic-research-skills) (Cheng-I Wu) | CC-BY-NC-4.0 |
 
 ---
 
@@ -204,24 +204,34 @@ academic-writing-automation/
 
 ## 🤝 配合使用的技能包
 
-| 类别 | 技能 | 来源 |
-|------|------|------|
-| ARS路由入口 | `ars-hub` | SkillHub（本地仓库） |
-| ARS快捷命令 | `ars-commands` | SkillHub（16个`/ars-*`命令） |
-| 文献检索 | `cnki`, `arxiv`, MCP `mcp_sciverse` | Hermes内置/SkillHub |
-| PDF解析 | `mineru` | SkillHub |
-| 去AI味 | `avoid-ai-writing` | SkillHub |
-| 论文润色 | `paper-revision-sop` | SkillHub |
-| 图表生成 | `academic-figures` | SkillHub |
-| 引用管理 | `academic-citation-manager`, `reference-management` | SkillHub |
-| 模拟评审 | `ars-academic-paper-reviewer` | SkillHub |
-| 深度研究 | `ars-deep-research`, `deep-research` | SkillHub |
+| 类别 | 技能 | 来源 | 许可证 |
+|------|------|------|--------|
+| ARS路由入口 | `ars-hub` | [ARS](https://github.com/Imbad0202/academic-research-skills) (Cheng-I Wu) | CC-BY-NC-4.0 |
+| ARS快捷命令 | `ars-commands` | [ARS](https://github.com/Imbad0202/academic-research-skills) (Cheng-I Wu) | CC-BY-NC-4.0 |
+| 文献检索 | `cnki`, `arxiv`, MCP `mcp_sciverse` | Hermes内置/SkillHub社区 | 见各来源 |
+| PDF解析 | `mineru` | [OpenDataLab](https://github.com/opendatalab/MinerU) | AGPL-3.0 |
+| 去AI味 | `avoid-ai-writing` | SkillHub 社区 | 见原作者 |
+| 论文润色 | `paper-revision-sop` | Hermes Agent（内部技能） | MIT |
+| 图表生成 | `academic-figures` | [docsor1212](https://clawhub.com/skills/academic-figures) via SkillHub | 见原作者 |
+| 引用管理 | `academic-citation-manager`, `reference-management` | [YouStudyeveryday](https://github.com/YouStudyeveryday/academic-citation-manager) / SkillHub | MIT / 见原作者 |
+| 模拟评审 | `ars-academic-paper-reviewer` | [ARS](https://github.com/Imbad0202/academic-research-skills) (Cheng-I Wu) | CC-BY-NC-4.0 |
+| 深度研究 | `ars-deep-research`, `deep-research` | [ARS](https://github.com/Imbad0202/academic-research-skills) / SkillHub | CC-BY-NC-4.0 / 见原作者 |
 
 ---
 
-## 📜 许可证
+## 📜 许可证与版权声明
 
-MIT License — 自由使用、修改和分发。
+**本仓库自创技能**（`citation-grounded-writing`、`add-docx-comments`、`paper-revision-sop`）采用 **MIT License** — 自由使用、修改和分发。
+
+**第三方技能和工具**的版权归属于各自的作者和组织：
+- **ARS 套件**（ars-hub, ars-commands, ars-academic-paper 等）— Cheng-I Wu / Imbad0202，**CC-BY-NC-4.0（非商业使用）**
+- **academic-citation-manager** — YouStudyeveryday，MIT License
+- **academic-figures** — docsor1212 via SkillHub
+- **MinerU** — OpenDataLab，AGPL-3.0
+- **MCP sciverse** — Nous Research / Hermes 平台内置
+- **其他 SkillHub 社区技能** — 各自原作者
+
+使用前请遵守各自的许可证条款。本仓库不拥有第三方技能的版权。商业使用 ARS 套件或 SkillHub 社区技能前需获取相应授权。
 
 ---
 
