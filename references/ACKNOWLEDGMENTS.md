@@ -10,17 +10,19 @@
 |------|------|--------|------|
 | `citation-grounded-writing` v1.1.0 | Hermes Agent (JIAOZI) | MIT | 全自动论文写作技能 |
 | `add-docx-comments` v1.0.0 | Hermes Agent (JIAOZI) | MIT | Word文档批注工具 |
-| `paper-revision-sop` | Hermes Agent (JIAOZI) | MIT | 论文润色修改SOP |
-| `marxist-report-word` | 霁弦 (Hermes Agent) | - | 思政论文docx排版 |
-| `docx-punctuation-normalizer` v1.0.0 | 霁弦 (Hermes Agent) | - | 英文标点→中文标点 |
+| `arxiv` | Hermes Agent (JIAOZI) | MIT | 基于 curl REST API 的 arXiv 搜索（独立实现，与 ractorrr 的版本不同） |
+| `marxist-report-word` | 霁弦 (Hermes Agent) | MIT | 思政论文docx排版 |
+| `docx-punctuation-normalizer` v1.0.0 | 霁弦 (Hermes Agent) | MIT | 英文标点→中文标点 |
 
 你可以自由使用、修改和分发上述技能。
+
+> ⚠️ **特别说明**：`arxiv` 是本仓库独立实现的 curl 版本，与 SkillHub 上 ractorrr 的 arXiv Research Assistant（含 MongoDB）不是同一个代码。`cnki` 也是本地独立实现的 Playwright 版本，与 jirboy 的 MCP Chrome DevTools 版本不同。
 
 ---
 
 ## ARS (Academic Research Skills) 套件
 
-ARS 由 **Cheng-I Wu / Imbad0202** 开发并维护，是功能强大的学术研究 Agent 框架。
+ARS 由 **Cheng-I Wu / Imbad0202** 开发并维护。
 
 | 技能 | 版本 | 作者 |
 |------|------|------|
@@ -33,48 +35,35 @@ ARS 由 **Cheng-I Wu / Imbad0202** 开发并维护，是功能强大的学术研
 
 - **许可证：** CC-BY-NC-4.0（**非商业使用**）
 - **GitHub 仓库：** https://github.com/Imbad0202/academic-research-skills
-- **注意：** 商业使用前必须获取授权。Hermes 适配层由 Hermes adaptation 完成。
+- **注意：** 商业使用前必须获取授权。
 
 ---
 
-## ClawHub 社区技能（通过 SkillHub 安装）
+## ClawHub 社区技能（与本地安装版本一致）
 
-以下技能来自 [ClawHub](https://clawhub.com/) 开源社区，通过 SkillHub 平台安装，版权属于各自的作者：
+以下技能来自 [ClawHub](https://clawhub.com/)，本地安装即为原作者的版本：
 
-| 技能 | 作者 | ClawHub 链接 | 说明 |
-|------|------|-------------|------|
-| `avoid-ai-writing` | conorbrondon | https://clawhub.com/skills/avoid-ai-writing | 去AI味检测与改写 |
-| `cnki` | jirboy | - | 中国知网自动化 |
-| `arxiv` | ractorrr (Ractor) | - | arXiv论文搜索 |
-| `academic-figures` v1.5.0 | docsor1212 | https://clawhub.com/skills/academic-figures | 论文配图生成 |
-| `academic-citation-manager` v1.0.0 | YouStudyeveryday | https://github.com/YouStudyeveryday/academic-citation-manager (MIT) | 引用管理 |
+| 技能 | 作者 | ClawHub 链接 | 许可证 |
+|------|------|-------------|--------|
+| `academic-figures` v1.5.0 | docsor1212 | https://clawhub.com/skills/academic-figures | 见原作者 |
+| `academic-citation-manager` v1.0.0 | YouStudyeveryday | https://github.com/YouStudyeveryday/academic-citation-manager | MIT |
+| `paper-revision-sop` | liuwenqi123123 | https://clawhub.ai/liuwenqi123123/paper-revision-sop | 见原作者 |
 
----
-
-## SkillHub 社区技能（作者已确认）
-
-以下技能通过 [SkillHub](https://skillhub.cn/) 平台获取，版权属于各自的作者：
-
-| 技能 | 作者 | 说明 |
-|------|------|------|
-| `deep-research` | user_8e810118 | 深度研究 |
-| `data-integrity-audit` | user_8e810118 | 数据一致性验证 |
-| `jiaozhen-factcheck` | 较真查真假（企业认证） | 事实查证（需 API Key） |
+> ⚠️ **修正**：`paper-revision-sop` 来自 ClawHub 作者 liuwenqi123123，之前误标为本仓库自创，现已更正。本仓库不拥有其版权。
 
 ---
 
-## SkillHub 社区技能（作者待确认）
+## 同名但不同实现的本地技能
 
-以下技能通过 SkillHub 安装，但作者信息未在 SKILL.md 或 SkillHub 页面明确标注。如果你知道这些技能的真实作者，欢迎提交 Issue 补充：
+以下技能的**名称**与 SkillHub/ClawHub 同名，但本地安装的代码是独立实现，内容不同：
 
-| 技能 | 说明 |
-|------|------|
-| `cn-academic-writing` | 中文思政论文格式规范 |
-| `ml-paper-writing` | ML/AI顶会论文（SKILL.md 标注作者 Orchestra Research，MIT） |
-| `scau-thesis-template` | 华南农业大学本科毕业论文模板 |
-| `reference-management` | 参考文献管理（英文技能，GB/T 7714） |
-| `academic-paper-literature-analyzer` | 文献分析与论文框架建立 |
-| `docx-table-merge` | docx表格插入 |
+| 本地技能名称 | 本地实现特点 | SkillHub 同名版本 | 差异说明 |
+|-------------|-------------|-------------------|----------|
+| `avoid-ai-writing` | 含中文路由表、子技能引用，结构不同 | conorbrondon v3.10.0 英文原版，含 Voice Profiles | 本地版是修改/精简版，去掉了 Voice Profiles |
+| `cnki` | Python Playwright 自动化（`cnki_auto.py`） | jirboy 的 MCP Chrome DevTools 版本 | 架构完全不同（Playwright vs MCP） |
+| `deep-research` | 实事求是/科学客观原则，Phases 阶段 | user_8e810118 的问题优先/深度优先，Steps 步骤 | 核心原则和工作流不同 |
+
+本地版本的版权归属于各自的修改者。使用时请注意区分，不要混淆为 SkillHub 原版。
 
 ---
 

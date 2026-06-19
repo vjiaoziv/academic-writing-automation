@@ -137,10 +137,10 @@ python scripts/add_docx_comments.py 输入.docx 输出.docx 批注清单.json
 
 | 工具 | 安装方式 | 用途 | 来源 | 许可证 |
 |------|---------|------|------|--------|
-| `cnki` | `~/.hermes/skills/cnki/` | 知网论文搜索下载（需校园网） | SkillHub 社区 | 见原作者 |
+| `cnki` | `~/.hermes/skills/cnki/` | 知网论文搜索下载（需校园网） | 本地 Playwright 独立实现（与 jirboy MCP 版不同） | 见说明 |
 | `mineru` | 配置 `MINERU_TOKEN` 到 `.env` | PDF/Word → Markdown 解析 | [OpenDataLab](https://github.com/opendatalab/MinerU) | AGPL-3.0 |
-| `avoid-ai-writing` | SkillHub | 去AI味检测与改写 | SkillHub 社区 | 见原作者 |
-| `paper-revision-sop` | 本仓库 `skills/` 目录 | 论文润色5阶段SOP | Hermes Agent（内部技能） | MIT |
+| `avoid-ai-writing` | SkillHub | 去AI味检测与改写 | 本地修改版（原版：conorbrondon v3.10.0） | 见原作者 |
+| `paper-revision-sop` | ClawHub | 论文润色5阶段SOP | [liuwenqi123123](https://clawhub.ai/liuwenqi123123/paper-revision-sop) | 见原作者 |
 | `academic-figures` | SkillHub | 14种学术图表 | [docsor1212](https://clawhub.com/skills/academic-figures) via SkillHub | 见原作者 |
 | `academic-citation-manager` | SkillHub | 6种引用格式 | [YouStudyeveryday](https://github.com/YouStudyeveryday/academic-citation-manager) | MIT |
 | `ars-hub` | SkillHub / 本地仓库 | ARS路由入口 | [ARS](https://github.com/Imbad0202/academic-research-skills) (Cheng-I Wu) | CC-BY-NC-4.0 |
@@ -210,10 +210,10 @@ academic-writing-automation/
 |------|------|------|--------|
 | ARS路由入口 | `ars-hub` | [ARS](https://github.com/Imbad0202/academic-research-skills) (Cheng-I Wu) | CC-BY-NC-4.0 |
 | ARS快捷命令 | `ars-commands` | [ARS](https://github.com/Imbad0202/academic-research-skills) (Cheng-I Wu) | CC-BY-NC-4.0 |
-| 文献检索 | `cnki`, `arxiv`, MCP `mcp_sciverse` | Hermes内置/SkillHub社区 | 见各来源 |
+| 文献检索 | `cnki`（本地独立实现）, `arxiv`（本地独立实现）, MCP `mcp_sciverse` | 本地/Hermes内置 | 见各来源 |
 | PDF解析 | `mineru` | [OpenDataLab](https://github.com/opendatalab/MinerU) | AGPL-3.0 |
-| 去AI味 | `avoid-ai-writing` | SkillHub 社区 | 见原作者 |
-| 论文润色 | `paper-revision-sop` | Hermes Agent（内部技能） | MIT |
+| 去AI味 | `avoid-ai-writing` | 本地修改版（原版：conorbrondon） | 见原作者 |
+| 论文润色 | `paper-revision-sop` | [liuwenqi123123](https://clawhub.ai/liuwenqi123123/paper-revision-sop) (ClawHub) | 见原作者 |
 | 图表生成 | `academic-figures` | [docsor1212](https://clawhub.com/skills/academic-figures) via SkillHub | 见原作者 |
 | 引用管理 | `academic-citation-manager`, `reference-management` | [YouStudyeveryday](https://github.com/YouStudyeveryday/academic-citation-manager) / SkillHub | MIT / 见原作者 |
 | 模拟评审 | `ars-academic-paper-reviewer` | [ARS](https://github.com/Imbad0202/academic-research-skills) (Cheng-I Wu) | CC-BY-NC-4.0 |
@@ -223,15 +223,21 @@ academic-writing-automation/
 
 ## 📜 许可证与版权声明
 
-**本仓库自创技能**（`citation-grounded-writing`、`add-docx-comments`、`paper-revision-sop`）采用 **MIT License** — 自由使用、修改和分发。
+**本仓库自创技能**（`citation-grounded-writing`、`add-docx-comments`、`arxiv`、`marxist-report-word`、`docx-punctuation-normalizer`）采用 **MIT License** — 自由使用、修改和分发。
+
+> ⚠️ **关于 `arxiv`**：本仓库的 `arxiv` 技能是基于 curl REST API 的独立实现，与 SkillHub 上 ractorrr 的 arXiv Research Assistant（含 MongoDB 功能）不是同一个代码，不归属于 ractorrr。
 
 **第三方技能和工具**的版权归属于各自的作者和组织：
 - **ARS 套件**（ars-hub, ars-commands, ars-academic-paper 等）— Cheng-I Wu / Imbad0202，**CC-BY-NC-4.0（非商业使用）**
+- **paper-revision-sop** — liuwenqi123123 via ClawHub（⚠️ 之前误标为自创，已更正）
 - **academic-citation-manager** — YouStudyeveryday，MIT License
 - **academic-figures** — docsor1212 via SkillHub
+- **avoid-ai-writing** — 本地修改版，原版作者 conorbrondon via ClawHub
 - **MinerU** — OpenDataLab，AGPL-3.0
 - **MCP sciverse** — Nous Research / Hermes 平台内置
 - **其他 SkillHub 社区技能** — 各自原作者
+
+> ⚠️ **关于同名不同实现的技能**：`cnki`、`avoid-ai-writing`、`deep-research` 的本地安装版本与 SkillHub 上同名技能的代码不同（架构、功能、工作流均有差异）。这些本地版本的版权不属于 SkillHub 原作者，但也不属于本仓库自创——它们是独立的修改/重实现版本。使用前请注意区分。
 
 使用前请遵守各自的许可证条款。本仓库不拥有第三方技能的版权。商业使用 ARS 套件或 SkillHub 社区技能前需获取相应授权。
 
