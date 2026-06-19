@@ -108,15 +108,15 @@ python scripts/add_docx_comments.py 输入.docx 输出.docx 批注清单.json
 **快速路由速查：**
 
 - 写一篇论文（全自动） → `citation-grounded-writing` 📦
-- 去AI味/润色 → `avoid-ai-writing` (rewrite模式) 🔶
-- 检查AI痕迹 → `avoid-ai-writing` (detect模式) 🔶
+- 去AI味/润色 → `avoid-ai-writing` (rewrite模式) 🔄
+- 检查AI痕迹 → `avoid-ai-writing` (detect模式) 🔄
 - 搜英文论文 → MCP `mcp_sciverse` 🔵
-- 搜中文论文 → `cnki` 🔶
+- 搜中文论文 → `cnki` 🔄
 - 读PDF全文 → `mineru` 🌐
-- 插入参考文献 → `academic-citation-manager` 🔸
+- 插入参考文献 → `academic-citation-manager` 🔶
 - 论文配图 → `academic-figures` 🔶
 - 批注Word文档 → `add-docx-comments` 📦
-- 审稿意见修改 → `paper-revision-sop` 📦
+- 审稿意见修改 → `paper-revision-sop` 🔶（ClawHub liuwenqi123123）
 - 模拟同行评审 → `ars-academic-paper-reviewer` 🔸
 - 深度研究一个主题 → `ars-deep-research` 🔸
 - 从研究到发表全流程 → `ars-academic-pipeline` 🔸
