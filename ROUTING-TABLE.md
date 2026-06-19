@@ -86,9 +86,10 @@
 
 ## 二、文献检索（入口）
 
-🔵 `mcp_sciverse` (MCP) — 首选：英文论文检索
+🔵 `mcp_sciverse` (MCP) — 首选：中英文论文检索
 - 来源：OpenDataLab | 平台：https://sciverse.opendatalab.com/
-- 10000+论文，支持DOI/作者/期刊/年份/学科过滤
+- 4.65亿+记录，2832万AI-Ready全文，支持DOI/作者/期刊/年份/学科过滤
+- semantic search 精准段落匹配，read_content 读取原文完整段落作为引用佐证
 
 🔄 `cnki` — 首选：中文知网检索（**本地版为 Playwright 独立实现**，与 jirboy 的 MCP 版不同）
 - 来源：本地独立实现 | Playwright自动化，8子命令，机构IP授权免登录
@@ -98,8 +99,9 @@
 
 ## 三、文献阅读与引用
 
-🔵 `mcp_sciverse read_content` — 英文论文全文阅读
+🔵 `mcp_sciverse read_content` — 中英文论文全文阅读
 - 来源：OpenDataLab | 平台：https://sciverse.opendatalab.com/
+- 读取原文完整段落，按offset分页获取，可作为引用证据
 
 🌐 `mineru` — 中英文PDF/Word → Markdown解析
 - 来源：OpenDataLab | 许可证：AGPL-3.0 | https://github.com/opendatalab/MinerU
@@ -202,8 +204,8 @@
 | AIGC检测 | `avoid-ai-writing` 🔄 (detect模式) | - | 本地修改版 |
 | 批注Word文档 | `add-docx-comments` 📦 | `paper-revision-sop` 🔶 | 自创 MIT |
 | 从研究到发表全流程 | `ars-academic-pipeline` 🔸 | - | CC-BY-NC-4.0 ⚠️非商业 |
-| 搜英文论文 | `mcp_sciverse` 🔵 | `arxiv` 📦 | OpenDataLab Sciverse, 详见 https://sciverse.opendatalab.com/ |
-| 搜中文论文 | `cnki` 🔄 | - | 本地 Playwright 独立实现 |
+| 搜英文论文 | `mcp_sciverse` 🔵 | `arxiv` 📦 | OpenDataLab Sciverse，4.65亿记录中英双语检索+段落佐证 |
+| 搜中文论文 | `mcp_sciverse` 🔵 / `cnki` 🔄 | - | sciverse 覆盖中文文献，cnki 知网深度补充 |
 | 读论文全文 | `mineru` 🌐 | `mcp_sciverse read_content` 🔵 | AGPL-3.0 |
 | 引用管理 | `academic-citation-manager` 🔶 | - | YouStudyeveryday MIT，唯一引用管理工具 |
 | 论文配图 | `academic-figures` 🔶 | - | docsor1212 |

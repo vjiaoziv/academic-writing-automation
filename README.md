@@ -110,7 +110,7 @@ python scripts/add_docx_comments.py 输入.docx 输出.docx 批注清单.json
 - 写一篇论文（全自动） → `citation-grounded-writing` 📦
 - 去AI味/润色 → `avoid-ai-writing` (rewrite模式) 🔄
 - 检查AI痕迹 → `avoid-ai-writing` (detect模式) 🔄
-- 搜英文论文 → MCP `mcp_sciverse` 🔵
+- 搜论文（中英文） → MCP `mcp_sciverse` 🔵
 - 搜中文论文 → `cnki` 🔄
 - 读PDF全文 → `mineru` 🌐
 - 插入参考文献 → `academic-citation-manager` 🔶
@@ -234,7 +234,7 @@ academic-writing-automation/
 - **academic-figures** — docsor1212 via SkillHub
 - **avoid-ai-writing** — 本地修改版，原版作者 conorbrondon via ClawHub
 - **MinerU** — OpenDataLab，AGPL-3.0
-- **MCP sciverse** — OpenDataLab (https://sciverse.opendatalab.com/)
+- **MCP sciverse** — OpenDataLab (https://sciverse.opendatalab.com/)，中英文双语，4.65亿记录，段落级引用佐证
 - **其他 SkillHub 社区技能** — 各自原作者
 
 > ⚠️ **关于同名不同实现的技能**：`cnki`、`avoid-ai-writing`、`deep-research` 的本地安装版本与 SkillHub 上同名技能的代码不同（架构、功能、工作流均有差异）。这些本地版本的版权不属于 SkillHub 原作者，但也不属于本仓库自创——它们是独立的修改/重实现版本。使用前请注意区分。
