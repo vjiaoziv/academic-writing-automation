@@ -396,7 +396,6 @@ POST https://mineru.net/api/v4/extract/task
 3. **Closed Access论文**：sciverse read_content 返回404。优先选OA论文；fallback：cnki下载PDF→mineru解析
 4. **SkillHub发布**：需用户完成实名认证后才可发布
 5. **待确认作者**：`cn-academic-writing`、`scau-thesis-template`、`academic-paper-literature-analyzer`、`docx-table-merge` 的来源和作者尚待确认
-6. `paper-revision-sop` 已从本仓库自创（MIT）更正为 ClawHub 社区技能（liuwenqi123123）
 
 ---
 
