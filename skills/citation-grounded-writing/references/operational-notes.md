@@ -9,6 +9,9 @@
 | 英文文献搜索 | `mcp_sciverse_search_papers` | ✅ | 10,000+结果，413ms，DOI/年份/学科过滤 |
 | 语义搜索 | `mcp_sciverse_semantic_search` | ✅ | quality模式，返回精准段落+score |
 | 全文读取 | `mcp_sciverse_read_content` | ⚠️ | Open Access ✅ / Closed Access ❌ (404) |
+| 高级搜索 | `search_papers` + `freshness_boost` | ✅ | `freshness_boost=STRONG` 返回近3年论文；注意与 `sort_by_year` 互斥 |
+| OA过滤 | `filters_advanced` | ✅ | `access_oa_status IN [gold,green,hybrid,diamond]` 精确过滤OA论文避免404 |
+| 高被引过滤 | `filters_advanced` | ✅ | `citation_normalized_percentile.is_in_top_10_percent=true` |
 | PDF解析 | `mineru` API v4 | ✅ 备用 | sciverse read_content 首选，mineru PDF解析备用 |
 | 中文文献搜索 | `cnki` Playwright | ✅ 备用 | sciverse 首选（4.65亿中英双语），cnki 知网深度补充 |
 | 关键句提取 | 直接处理 | ✅ | 6维度分类标注，已验证5条真实句子 |
@@ -17,6 +20,10 @@
 | 去AI味 | `avoid-ai-writing` | ✅ | rewrite模式，academic配置 |
 
 ### 关键发现
+6. **Sciverse `freshness_boost` 与 `sort_by_year` 互斥**：同时传返回400错误，模糊搜索只能按相关性排序。
+7. **`filters_advanced` operator 格式**：必须用 `FILTER_OP_IN`/`FILTER_OP_EQ`/`FILTER_OP_GT` 等大写格式，小写 `IN`/`EQ` 会400错误。
+8. **专利搜索不可用**：Sciverse `type` 字段枚举值中无 `patent`，主要覆盖学术文献。
+9. **15个官方场景案例已验证**：包括文献综述Agent、Citation Grounding、PRISMA初筛、趋势扫描等，详见 https://sciverse.opendatalab.com/
 
 1. **sciverse read_content 对 Closed Access 返回 404**：即使 search_papers 返回了结果，read_content 对非 OA 论文返回 `CONTENT_NOT_FOUND`。应对：优先选 OA 论文；fallback：cnki 下载 PDF → mineru 解析。
 

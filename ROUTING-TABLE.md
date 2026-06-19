@@ -222,15 +222,63 @@
 
 ---
 
-## 十、工具概览：MCP Sciverse — OpenDataLab
+## 十、工具概览：MCP Sciverse — OpenDataLab（**首选**）
 
 来源：OpenDataLab (https://sciverse.opendatalab.com/) — 学术论文语义搜索引擎。
 
-- `mcp_sciverse_search_papers` — 结构化论文搜索
-- `mcp_sciverse_semantic_search` — 自然语言语义搜索
-- `mcp_sciverse_read_content` — 全文内容读取
-- `mcp_sciverse_get_resource` — 获取图表/图片
-- `mcp_sciverse_list_catalog` — 查询schema
+### 5 个 MCP 工具
+
+| 工具 | 功能 | 实测状态 |
+|------|------|----------|
+| `search_papers` | 结构化论文搜索（作者/期刊/年份/学科/DOI过滤） | ✅ 10,000+结果 |
+| `semantic_search` | 自然语言语义搜索（fast/balanced/quality三模式） | ✅ score 0.95 |
+| `read_content` | 全文内容读取（按offset分页，段落级引用佐证） | ✅ 英文112KB + 中文41KB |
+| `get_resource` | 获取论文图表/表格图片 | ✅ |
+| `list_catalog` | 查询schema字段和运算符 | ✅ 60+字段 |
+
+### 高级搜索能力（已验证）
+
+| 功能 | 用法 | 验证结果 |
+|------|------|----------|
+| 新鲜度加权 | `freshness_boost="STRONG"`（近3年）/ `MILD`（近10年） | ✅ 返回2024-2025新论文 |
+| OA状态过滤 | `filters_advanced=[{"field":"access_oa_status","operator":"FILTER_OP_IN","value":["gold","green","hybrid","diamond"]}]` | ✅ 正确过滤OA论文 |
+| Top10%/1%被引 | `filters_advanced=[{"field":"citation_normalized_percentile.is_in_top_10_percent","operator":"FILTER_OP_EQ","value":true}]` | ✅ 返回FWCI 17.8高被引论文 |
+| 被引百分位排序 | `sort_by_year="desc"` | ✅ |
+| 语义搜索质量模式 | `semantic_search(query, mode="quality")` | ✅ LLM改写+混合检索 |
+
+### ⚠️ 使用注意事项
+
+1. **`freshness_boost` 与 `sort_by_year` 互斥**：不能同时使用，模糊搜索按相关性排序
+2. **`filters_advanced` 运算符格式**：必须用 `FILTER_OP_IN`/`FILTER_OP_EQ`/`FILTER_OP_GT` 等，不能用 `IN`/`EQ`
+3. **专利搜索不可用**：`type` 字段枚举值中无 `patent`，Sciverse 主要覆盖学术文献
+4. **Closed Access 论文**：`read_content` 返回 404，需 fallback 到 cnki+mineru
+
+### 15 个官方场景案例
+
+来源：https://sciverse.opendatalab.com/ 场景案例页（2026-06-19 验证）
+
+| # | 场景 | 标签 | 难度 | 写论文可用性 |
+|---|------|------|------|------------|
+| 1 | 构建科研文献综述 Agent | Agent/RAG | 进阶 | ⭐⭐⭐ 文献综述核心流程 |
+| 2 | 做科学 RAG 数据源 | RAG/Agent | 进阶 | ⭐⭐ 为LLM提供可信科学证据 |
+| 3 | 查找论文全文证据 | RAG/检索 | 入门 | ⭐⭐⭐ **引用佐证核心场景** |
+| 4 | 下载论文图表资源 | 多模态/检索 | 入门 | ⭐⭐ 获取论文图表 |
+| 5 | 结构化论文筛选 | 检索/Agent | 进阶 | ⭐⭐⭐ **精确过滤OA论文** |
+| 6 | 在Claude/Cursor/Codex接入Skill | Skill/Agent | 入门 | ⭐ 我们已在Hermes中接入 |
+| 7 | 专利与文献语义探索 | 专利/检索 | 进阶 | ⚠️ 专利搜索不可用（已验证） |
+| 8 | 科学问答Citation Grounding | RAG/Agent | 高级 | ⭐⭐⭐ **消除幻觉，为每句话找文献来源** |
+| 9 | 论文图表提取与分析Demo | 多模态/检索 | 高级 | ⭐⭐ 图表分析辅助 |
+| 10 | 论文标题相似度去重 | Agent/元数据 | 进阶 | ⭐⭐ 避免重复引用 |
+| 11 | DOI/标题精确解析 | 元数据/检索 | 入门 | ⭐⭐⭐ **快速拉取元数据+全文** |
+| 12 | 系统综述初筛助手 | 综述/Agent | 高级 | ⭐⭐⭐ **PRISMA-style初筛** |
+| 13 | 论文可信引用包Evidence Pack | RAG/工具 | 进阶 | ⭐⭐⭐ **标准化引用格式模板** |
+| 14 | 研究方向趋势扫描 | 元数据/检索 | 进阶 | ⭐⭐⭐ **近5年热度/头部期刊/高被引论文** |
+| 15 | 论文阅读助手 | 工具/RAG | 入门 | ⭐⭐⭐ **分段读全文，抽取方法/数据/结论** |
+
+### 其他产品（同一账号体系）
+
+- **点石 DianShi** — 科学数据处理平台
+- **SeqStudio** — 序列分析工具
 
 ## 十一、工具概览：CNKI 知网自动化（本地 Playwright 独立实现）
 

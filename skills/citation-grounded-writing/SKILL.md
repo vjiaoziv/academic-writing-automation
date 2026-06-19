@@ -59,7 +59,8 @@ author: "Hermes Agent"
 **执行细则**：
 - 每条路径搜索至少 2 轮（不同关键词组合）
 - 搜索结果去重（按 DOI / title 去重）
-- 优先选择：近3年 > 高被引 > 核心期刊 > 方法/综述类论文
+- 优先选择：近3年（`freshness_boost=STRONG`）> 高被引（`citation_normalized_percentile.is_in_top_10_percent`）> 核心期刊 > 方法/综述类论文
+- **重要**：`freshness_boost` 与 `sort_by_year` 互斥，不能同时使用
 - 初选 15-20 篇候选文献，最终精选 8-15 篇
 
 #### 1.2 下载并解析全文
