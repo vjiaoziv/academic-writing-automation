@@ -8,11 +8,13 @@
 
 | 技能 | 作者 | 许可证 | 说明 |
 |------|------|--------|------|
-| `citation-grounded-writing` v1.1.0 | Hermes Agent | MIT | 全自动论文写作技能 |
-| `add-docx-comments` v1.0.0 | Hermes Agent | MIT | Word文档批注工具 |
-| `paper-revision-sop` | Hermes Agent | MIT | 论文润色修改SOP |
+| `citation-grounded-writing` v1.1.0 | Hermes Agent (JIAOZI) | MIT | 全自动论文写作技能 |
+| `add-docx-comments` v1.0.0 | Hermes Agent (JIAOZI) | MIT | Word文档批注工具 |
+| `paper-revision-sop` | Hermes Agent (JIAOZI) | MIT | 论文润色修改SOP |
+| `marxist-report-word` | 霁弦 (Hermes Agent) | - | 思政论文docx排版 |
+| `docx-punctuation-normalizer` v1.0.0 | 霁弦 (Hermes Agent) | - | 英文标点→中文标点 |
 
-你可以自由使用、修改和分发上述三个技能。
+你可以自由使用、修改和分发上述技能。
 
 ---
 
@@ -35,30 +37,44 @@ ARS 由 **Cheng-I Wu / Imbad0202** 开发并维护，是功能强大的学术研
 
 ---
 
-## SkillHub 社区技能
+## ClawHub 社区技能（通过 SkillHub 安装）
+
+以下技能来自 [ClawHub](https://clawhub.com/) 开源社区，通过 SkillHub 平台安装，版权属于各自的作者：
+
+| 技能 | 作者 | ClawHub 链接 | 说明 |
+|------|------|-------------|------|
+| `avoid-ai-writing` | conorbrondon | https://clawhub.com/skills/avoid-ai-writing | 去AI味检测与改写 |
+| `cnki` | jirboy | - | 中国知网自动化 |
+| `arxiv` | ractorrr (Ractor) | - | arXiv论文搜索 |
+| `academic-figures` v1.5.0 | docsor1212 | https://clawhub.com/skills/academic-figures | 论文配图生成 |
+| `academic-citation-manager` v1.0.0 | YouStudyeveryday | https://github.com/YouStudyeveryday/academic-citation-manager (MIT) | 引用管理 |
+
+---
+
+## SkillHub 社区技能（作者已确认）
 
 以下技能通过 [SkillHub](https://skillhub.cn/) 平台获取，版权属于各自的作者：
 
-| 技能 | 来源 | 说明 |
+| 技能 | 作者 | 说明 |
 |------|------|------|
-| `academic-figures` v1.5.0 | [docsor1212](https://clawhub.com/skills/academic-figures) via SkillHub | 论文配图生成 |
-| `academic-citation-manager` v1.0.0 | [YouStudyeveryday](https://github.com/YouStudyeveryday/academic-citation-manager) via SkillHub (MIT) | 引用管理 |
-| `cnki` | SkillHub 社区 | 中国知网自动化 |
-| `arxiv` | SkillHub 社区 | arXiv论文搜索 |
-| `avoid-ai-writing` | SkillHub 社区 | 去AI味检测与改写 |
-| `cn-academic-writing` | SkillHub 社区 | 中文思政论文格式 |
-| `marxist-report-word` | SkillHub 社区 | 思政论文docx排版 |
-| `ml-paper-writing` | SkillHub 社区 | ML/AI顶会论文 |
-| `scau-thesis-template` | SkillHub 社区 | 华农本科毕业论文模板 |
-| `reference-management` | SkillHub 社区 | 参考文献管理 |
-| `deep-research` | SkillHub 社区 | 深度研究 |
-| `academic-paper-literature-analyzer` | SkillHub 社区 | 文献分析 |
-| `data-integrity-audit` | SkillHub 社区 | 数据一致性验证 |
-| `jiaozhen-factcheck` | SkillHub 社区 | 事实查证 |
-| `docx-punctuation-normalizer` | SkillHub 社区 | 标点转换 |
-| `docx-table-merge` | SkillHub 社区 | 表格插入 |
+| `deep-research` | user_8e810118 | 深度研究 |
+| `data-integrity-audit` | user_8e810118 | 数据一致性验证 |
+| `jiaozhen-factcheck` | 较真查真假（企业认证） | 事实查证（需 API Key） |
 
-使用这些技能时，请遵守各原作者制定的许可证条款。
+---
+
+## SkillHub 社区技能（作者待确认）
+
+以下技能通过 SkillHub 安装，但作者信息未在 SKILL.md 或 SkillHub 页面明确标注。如果你知道这些技能的真实作者，欢迎提交 Issue 补充：
+
+| 技能 | 说明 |
+|------|------|
+| `cn-academic-writing` | 中文思政论文格式规范 |
+| `ml-paper-writing` | ML/AI顶会论文（SKILL.md 标注作者 Orchestra Research，MIT） |
+| `scau-thesis-template` | 华南农业大学本科毕业论文模板 |
+| `reference-management` | 参考文献管理（英文技能，GB/T 7714） |
+| `academic-paper-literature-analyzer` | 文献分析与论文框架建立 |
+| `docx-table-merge` | docx表格插入 |
 
 ---
 
