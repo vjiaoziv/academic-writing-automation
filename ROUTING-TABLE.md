@@ -11,7 +11,7 @@
 本路由表涉及的技能和工具来自多个来源，使用前请遵守各自的许可证要求：
 
 📦 **本仓库自创（MIT License）**
-- `citation-grounded-writing` v1.1.0 — Hermes Agent (JIAOZI)
+- `citation-grounded-writing` v1.2.0 — Hermes Agent (JIAOZI)
 - `add-docx-comments` v1.0.0 — Hermes Agent (JIAOZI)
 - `arxiv` — Hermes Agent (JIAOZI) — **独立实现**的 curl REST API 版，与 SkillHub ractorrr 版不同
 - `marxist-report-word` — 霁弦 (Hermes Agent)
@@ -64,9 +64,9 @@
 
 ## 一、论文写作（核心）
 
-📦 `citation-grounded-writing` v1.1.0 — 首选：写任何论文
+📦 `citation-grounded-writing` v1.2.0 — 首选：写任何论文
 - 来源：本仓库自创 | 许可证：MIT
-- 6阶段全流程，基于真实参考文献原文句子佐证，Sciverse 中英文首选 + cnki/mineru 备用
+- 7阶段全流程（含PRISMA Phase 1.5），基于真实参考文献原文句子佐证，Sciverse 中英文首选 + cnki/mineru 备用
 
 🔸 `ars-academic-paper` v3.2.0 — 备用：12-agent全自动论文写作
 - 来源：ARS (Cheng-I Wu / Imbad0202) | 许可证：CC-BY-NC-4.0 ⚠️非商业
@@ -363,11 +363,6 @@ Sciverse MCP 覆盖 `citation-grounded-writing` 7 阶段管线的 Phase 1-6：
 | 14 | 研究方向趋势扫描 | 元数据/检索 | 进阶 | ⭐⭐⭐ **近5年热度/头部期刊/高被引论文** |
 | 15 | 论文阅读助手 | 工具/RAG | 入门 | ⭐⭐⭐ **分段读全文，抽取方法/数据/结论** |
 
-### 其他产品（同一账号体系）
-
-- **点石 DianShi** — 科学数据处理平台
-- **SeqStudio** — 序列分析工具
-
 ## 十一、工具概览：CNKI 知网自动化（本地 Playwright 独立实现）
 
 来源：本地独立实现（与 jirboy 的 MCP Chrome DevTools 版本不同）
@@ -399,10 +394,9 @@ POST https://mineru.net/api/v4/extract/task
 1. **同名技能混淆**（本文件已标记🔄）：`avoid-ai-writing`、`cnki`、`arxiv`、`deep-research` 的本地实现与 SkillHub 同名版代码不同
 2. **cnki PDF下载有bug**：input() 阻塞 + .brief 选择器超时。使用 auto-download 模式或手动复制URL
 3. **Closed Access论文**：sciverse read_content 返回404。优先选OA论文；fallback：cnki下载PDF→mineru解析
-4. **citation-grounded-writing v1.1.0**：新建技能，尚未经过真人实战测试
-5. **SkillHub发布**：需用户完成实名认证后才可发布
-6. **待确认作者**：`cn-academic-writing`、`scau-thesis-template`、`academic-paper-literature-analyzer`、`docx-table-merge` 的来源和作者尚待确认
-7. `paper-revision-sop` 已从本仓库自创（MIT）更正为 ClawHub 社区技能（liuwenqi123123）
+4. **SkillHub发布**：需用户完成实名认证后才可发布
+5. **待确认作者**：`cn-academic-writing`、`scau-thesis-template`、`academic-paper-literature-analyzer`、`docx-table-merge` 的来源和作者尚待确认
+6. `paper-revision-sop` 已从本仓库自创（MIT）更正为 ClawHub 社区技能（liuwenqi123123）
 
 ---
 
